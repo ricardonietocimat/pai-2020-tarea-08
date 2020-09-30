@@ -1,5 +1,7 @@
-# Programación y Algoritmos
-## Tarea 08 -- Montículos ternarios
+= Programación y Algoritmos : Tarea 08
+:toc:
+
+==  Montículos ternarios
 
 **Nota 1:** Esta tarea es *colaborativa* (en pares y con un repositorio git). Un medio punto
 se atribuirá en función del buen uso de git entre ambos participantes (contribuciones equilibradas y revisiones
@@ -17,7 +19,7 @@ tiene exactamente tres hijos.
 Un montículo ternario cumple con las propriedades de los montículos: 
 * el árbol ternario correspondiente está casi completo
 * las raíces de cualquier sub-árbol contienen una llave superior a todas las de los otros
-nodos del sub-´arbol. 
+nodos del sub-árbol. 
 
 En la figura siguiente, damos un ejemplo de montículo ternario.
 
@@ -33,22 +35,23 @@ Para la implementación del montículo ternario, se tomará como modelo la imple
 binario y se realizará la implementación de la estructura `Theap` de las siguientes funciones: 
 
 
-```c
+[source,c]
+----
 void insert(THeap *h, int data);
 int removeMax(THeap *h);
 int getMax(THeap *h);
 
 void bottomUpHeapify(int *arr, int k);
 void topDownHeapify(int * arr, int k, int n);
-```
+----
 
-#### Pregunta 01 (3 pts)
+==== Pregunta 01 (3 pts)
   Implementar el montículo ternario como se sugirió arriba.
-#### Pregunta 02 (1 pts)
+==== Pregunta 02 (1 pts)
   Hacer un análsis de complejidad de los métodos desarrollados (puede venir este análsisi como 
   comentario en el código). Comparar en particular el desempeño contra el montículo binario. 
 
-### Aplicación al cálculo de la mediana en streaming
+==== Aplicación al cálculo de la mediana en streaming
 
 En esta aplicación de los montículos, usaremos la estructura desarrollada en la pregunta anterior para
 determinar el valor mediano de datos llegando como flujo (pensar en datos llegando a través de un medio de 
@@ -90,12 +93,13 @@ el montículo-max y el nuevo mediano será el max; si el nuevo dato es superior 
 montículo mín y el nuevo mediano será el min. 
 
 
-#### Pregunta 03 (3pts)
+==== Pregunta 03 (3pts)
 Implementar el algoritmo de cálculo del valor mediano
 
-#### Pregunta 04 (1pts)
+==== Pregunta 04 (1pts)
 Demostrar que el algoritmo propuesto calcula bien el valor mediano
 
-#### Pregunta 05 (1pts)
+==== Pregunta 05 (1pts)
 Hacer un análisi de complejidad del algoritmo (puede venir este análisis como comentario en el código). 
 
+== GIT y GITHUB
