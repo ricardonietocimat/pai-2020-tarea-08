@@ -24,6 +24,9 @@ nodos del sub-árbol.
 
 En la figura siguiente, damos un ejemplo de montículo ternario.
 
+[align=center]
+image::./javier.g-ricardo.n/imgs/heap.png[heap]
+
 Es interesante observar que, de manera similar a lo que vimos en la clase con montículos binarios, se
 puede implementar esta estructura con un arreglo, guardando los datos nivel por nivel. Con el primer
 dato en el índice 0, se puede mostrar que los tres hijos del nodo ubicado en el índex k se encuentran en
