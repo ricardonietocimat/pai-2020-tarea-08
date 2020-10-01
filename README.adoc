@@ -110,6 +110,7 @@ y se les propone utilizar la plataforma GITHUB para coordinar la colaboración. 
 una cuenta en github o ambas. 
 
 Se espera lo mínimo en el uso de estas herramientas, esto es: 
+
 * push 
 * branch
 * checkout 
