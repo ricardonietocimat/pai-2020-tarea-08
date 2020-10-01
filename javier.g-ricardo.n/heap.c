@@ -3,13 +3,19 @@
 
 // Prototipos =================================================================
 
-void insert(THeap *h, int data);
-int removeMax(THeap *h);
-int getMax(THeap *h);
+typedef struct _THeap{
+  int size;
+}THeap;
 
-void bottomUpHeapify(int *arr, int k);
-void topDownHeapify(int * arr, int k, int n);
+THeap * THeap_new(void);
+void    free_THeap(THeap ** hptr);
 
+void    insert(THeap *h, int data);
+int     removeMax(THeap *h);
+int     getMax(THeap *h);
+
+void    bottomUpHeapify(int *arr, int k);
+void    topDownHeapify(int * arr, int k, int n);
 
 // Definiciones ===============================================================
 
