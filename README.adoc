@@ -1,4 +1,5 @@
 = Programación y Algoritmos : Tarea 08
+:stem: latexmath
 :toc:
 
 ==  Montículos ternarios
@@ -131,6 +132,8 @@ podrán encontrar este documento con las instrucciones y actualizaciones pertine
 . integrante-1 invita la colaboración a integrante-2
 
 . crear _branch_ [integrante1-integrante2]
+
+. crear un directorio con nombre [integrante1-integrante2] donde estén todos sus archivos y trabajar en el. 
 
 . crear un _issue_ para coordinar que va a realizar cada quien.
 
