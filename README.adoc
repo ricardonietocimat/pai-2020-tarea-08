@@ -229,3 +229,7 @@ parte colaborativa es el siguiente:
 . una vez tengan finalizada la tarea hacer un _pull request_ al repositorio
   original (tarea-08)
 
+== Tutorial 
+
+Para los que no estén familiarizados con `git` en el documento `tutorial.adoc` 
+podrán encontrar algunos de los comandos más usuales. 
