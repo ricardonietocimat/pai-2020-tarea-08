@@ -53,10 +53,12 @@ void    topDownHeapify(int * arr, int k, int n);
 THeap * THeap_new(void) {
     //Pedimos memoria para el árbol
     THeap *h = (THeap*)malloc(sizeof(THeap));
+    if(!h) {printf("Error al solicitar memoria (THeap)\n"); exit(1);}
     //Cambiamos sus valores
     h->size = 0;
     h->capacity = max_size;
     h->vec = (int*)malloc(max_size*sizeof(int));
+    if(!h) {printf("Error al solicitar memoria (datos)\n"); exit(1);}
     return h;
 }
 
