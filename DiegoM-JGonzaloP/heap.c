@@ -115,6 +115,9 @@ void bottomUpHeapify(int *arr, int k)   {
             arr[k] = aux;
             k = pos;
         }
+        //Sino acabamos
+        else
+            break;
     }
     return;
 } 
