@@ -46,6 +46,11 @@ void reverseInsert(THeap *h, int data) {
 } 
 
 int removeMin(THeap *h) { 
+    //Si no hay elementos en el montículo
+    if(h->size == 0)    {
+        printf("Estás tratando de remover de un montículo vacío\n");
+        return -1;
+    }
     int min_aux = getMin(h);
 
     //Reemplazamos el mínimo por el último valor del arreglo
@@ -58,6 +63,10 @@ int removeMin(THeap *h) {
 } 
 
 int getMin(THeap *h){ 
+    if(h->size == 0)    {
+        printf("Error, no hay elementos en el montículo\n");
+        return -1;
+    }
     return h->vec[0];
 } 
 
