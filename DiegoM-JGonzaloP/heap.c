@@ -88,6 +88,11 @@ void insert(THeap *h, int data) {
 } 
 
 int removeMax(THeap *h) { 
+    //Si no hay elementos en el montículo
+    if(h->size == 0)    {
+        printf("Estás tratando de remover de un montículo vacío\n");
+        return -1;
+    }
     int max_aux = getMax(h);
     //Reemplazamos el máximo por el último valor del arreglo
     //Notar que también reducimos el tamaño
@@ -98,6 +103,10 @@ int removeMax(THeap *h) {
 } 
 
 int getMax(THeap *h){ 
+    if(h->size == 0)    {
+        printf("Error, no hay elementos en el montículo\n");
+        return -1;
+    }
     return h->vec[0];
 } 
 
