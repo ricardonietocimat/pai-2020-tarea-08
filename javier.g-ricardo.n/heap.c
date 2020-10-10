@@ -2,7 +2,7 @@
 // Created by juan on 04/10/20.
 //
 
-#include "TernaryHeap.h"
+#include "heap.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -22,6 +22,28 @@ THeap * createTHeap(int capacity) {
     return h;
 }
 
+bool incrementeHeapSize(THeap *h){
+    int *tmp = h->data;
+
+    //increment heap size by 2
+    h->data = (int*)malloc(2*capacity*sizeof(int));
+    if (h->data == NULL){
+        printf("Couldnt resize heap\n");
+        h->data = tmp;
+        return false;
+    }
+
+    //copy data
+    for (int i = 0; i<h->capacity; i++){
+        h->data[i] = tmp[i];
+    }
+    h->capacity *= 2;
+
+    //free memory of previous array
+    free(tmp);
+    return true;
+}
+
 void swap(int *arr, int i, int j){
     int tmp = arr[i];
     arr[i] = arr[j];
@@ -33,11 +55,11 @@ int left(int i){
 }
 
 int right(int i){
-    return 3*i+2;
+    return 3*i+3;
 }
 
 int middle(int i){
-    return 3*i+3;
+    return 3*i+2;
 }
 
 int parent(int i){
@@ -84,7 +106,7 @@ void topDownHeapify(int *arr, int k, int size){
 }
 
 void insert(THeap *h, int data){
-    if (h->size == h->capacity){
+    if (h->size == h->capacity && !incrementeHeapSize(h)){
         printf("ERROR: full capacity\n");
         return;
     }
@@ -118,22 +140,23 @@ int topNonLeafNode(THeap *h){
     return h->size / 3;
 }
 
-void verifyHeapProperty(THeap *h){
+int verifyHeapProperty(THeap *h){
     int n = topNonLeafNode(h);
 
     for (int i = 0; i<n; i++){
         if (left(i)<n && h->data[i] < h->data[left(i)]) {
             printf("HEAP PROPERTY VIOLATED at index %d \n", i);
-            return;
+            return 0;
         }else if(right(i)<n && h->data[i] < h->data[right(i)]){
             printf("HEAP PROPERTY VIOLATED at index %d \n", i);
-            return;
+            return 0;
         }else if (middle(i) < n && h->data[i] < h->data[middle(i)]){
             printf("HEAP PROPERTY VIOLATED at index %d \n", i);
-            return;
+            return 0;
         }
     }
     printf("HEAP OK\n");
+    return 1;
 }
 
 
@@ -182,7 +205,7 @@ void minTopDownHeapify(int *arr, int k, int size){
 }
 
 void minHeapInsert(THeap *h, int data){
-    if (h->size == h->capacity){
+    if (h->size == h->capacity && !incrementeHeapSize(h)){
         printf("ERROR: full capacity\n");
         return;
     }
@@ -206,22 +229,23 @@ int getMin(THeap *h){
     return h->data[0];
 }
 
-void verifyMinHeapProperty(THeap *h){
+int verifyMinHeapProperty(THeap *h){
     int n = topNonLeafNode(h);
 
     for (int i = 0; i<n; i++){
         if (left(i)<n && h->data[i] > h->data[left(i)]) {
             printf("HEAP PROPERTY VIOLATED at index %d \n", i);
-            return;
+            return 0;
         }else if(right(i)<n && h->data[i] > h->data[right(i)]){
             printf("HEAP PROPERTY VIOLATED at index %d \n", i);
-            return;
+            return 0;
         }else if (middle(i) < n && h->data[i] > h->data[middle(i)]){
             printf("HEAP PROPERTY VIOLATED at index %d \n", i);
-            return;
+            return 0;
         }
     }
     printf("HEAP OK\n");
+    return 1;
 }
 
 
