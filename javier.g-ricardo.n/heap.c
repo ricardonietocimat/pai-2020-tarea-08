@@ -5,8 +5,6 @@
 
 typedef struct _THeap{
   int size;
-  int n;
-  int *data;
 }THeap;
 
 THeap * THeap_new(void);
