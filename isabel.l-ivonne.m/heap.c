@@ -36,8 +36,8 @@ void insert(THeap *h, int data){
 
 int removeMax(THeap *h){
  //n+1 es el numero de elementos en el heap
- //si tenermos menos de 1 para 
-	if (h->n<1)
+ //si tenermos menos de n=-1 para 
+	if (h->n<0)
 	{ 
 		return INT_MIN;
 	}
@@ -55,7 +55,7 @@ int getMax(THeap *h){
 } 
 
 void bottomUpHeapify(int *arr, int k){ 
-  while (k > 1 && arr[(k-1)/3]<arr[k]){
+  while (k >= 1 && arr[(k-1)/3]<arr[k]){
 	swap(arr,k,(k-1)/3);
 	k=(k-1)/3;
 	}
