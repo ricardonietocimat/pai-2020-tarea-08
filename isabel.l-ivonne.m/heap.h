@@ -3,7 +3,7 @@
 // Prototipos =================================================================
 typedef struct _THeap{
 	unsigned int capacity;
-	unsigned int n;
+	int n;
 	int* data;
 }THeap;
 

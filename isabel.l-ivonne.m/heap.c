@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include "heap.h"
+
 // Definiciones ===============================================================
 THeap* THeap_new(int c){
 	// Asignación de memoria a la  struct THeap.
@@ -33,15 +35,15 @@ void insert(THeap *h, int data){
 } 
 
 int removeMax(THeap *h){
- //n es el numero de elementos en el heap
+ //n+1 es el numero de elementos en el heap
  //si tenermos menos de 1 para 
 	if (h->n<1)
 	{ 
-		return -1;
+		return -INT_MIN;
 	}
 //por propiedades del heap el max esta en la primer entrada
 	int tmp = h->data[0];
-		h->data[0]= h->data[(h->n)-1];
+		h->data[0]= h->data[(h->n)--];
 		topDownHeapify(h->data,0,h->n);
 	return tmp;
 } 
