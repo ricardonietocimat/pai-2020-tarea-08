@@ -1,10 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include "heap.h"
+
 // Definiciones ===============================================================
-THeap* THeap_new(){
+THeap* THeap_new(int c){
 	// Asignación de memoria a la  struct THeap.
 	THeap* heap = (THeap*)malloc(sizeof(THeap));
+	heap-> capacity = c;
+	heap->n=-1;
+    heap->data = (int*)calloc(c, sizeof(int));
 	return heap;
 	
 }
@@ -29,16 +34,20 @@ void insert(THeap *h, int data){
   
 } 
 
-int removeMax(THeap *h){ 
+int removeMax(THeap *h){
+ //n+1 es el numero de elementos en el heap
+ //si tenermos menos de 1 para 
 	if (h->n<1)
 	{ 
-		return -1;
+		return INT_MIN;
 	}
+//por propiedades del heap el max esta en la primer entrada
 	int tmp = h->data[0];
-	h->data[0]= h->data[h->n--];
-	topDownHeapify(h->data,0,h->n);
+		h->data[0]= h->data[(h->n)--];
+		topDownHeapify(h->data,0,h->n);
 	return tmp;
 } 
+
 
 int getMax(THeap *h){ 
 
@@ -59,12 +68,11 @@ void topDownHeapify(int * arr, int k, int n){
 		int j = 3*k+1;
 		int l = 3*k+1;
 		if (j < n && arr[j]<arr[ j+1]) 
-			l++;
+			l=j+1;
 		if (j < n-1 && arr[j]<arr[ j+2]) 
-			l++;
-
+			l=j+2;
 		if ( arr [k]>=arr[l])
-		 break;
+		 	break;
 		swap(arr,k, l );
 		k = l;
 	}
