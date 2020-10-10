@@ -21,9 +21,19 @@ void    bottomUpHeapify(int *arr, int k);
 void    topDownHeapify(int * arr, int k, int n);
 
 // Definiciones ===============================================================
+ //getMax, bottomUp, insert,  testTopDown
 
 void insert(THeap *h, int data){
-  return;
+    if(h->size==h->capacity-1){
+        printf("El monticulo esta lleno\n");
+        return;
+    }
+    //Añade el nuevo elemento al final
+    h->data[(h->size)+1] = data;
+    h->size++;
+    //Monticuliza el arreglo xD
+    bottomUpHeapify(h->data, h->size);
+    return;
 }
 
 int removeMax(THeap *h){
@@ -34,8 +44,19 @@ int getMax(THeap *h){
   return -1;
 }
 
+void swap_andi(int*arr, int i, int j){
+    int tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+
+}
+
 void bottomUpHeapify(int *arr, int k){
-  return;
+    while(k>1 && arr[(k+1)/3]<arr[k]){
+        swap(arr, k, k+1)/3);
+        k = (k+1)/3;
+    }
+    return;
 }
 
 void topDownHeapify(int * arr, int k, int n){
