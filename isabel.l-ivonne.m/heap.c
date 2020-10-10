@@ -30,11 +30,19 @@ void insert(THeap *h, int data){
 } 
 
 int removeMax(THeap *h){ 
-  return -1;
+	if (h->n<1)
+	{ 
+		return -1;
+	}
+	int tmp = h->data[0];
+	h->data[0]= h->data[h->n--];
+	topDownHeapify(h->data,0,h->n);
+	return tmp;
 } 
 
 int getMax(THeap *h){ 
-  return -1;
+
+  return h->data[0];
 } 
 
 void bottomUpHeapify(int *arr, int k){ 
@@ -46,6 +54,20 @@ void bottomUpHeapify(int *arr, int k){
 } 
 
 void topDownHeapify(int * arr, int k, int n){ 
+	while (3*k+1 <= n)
+	{
+		int j = 3*k+1;
+		int l = 3*k+1;
+		if (j < n && arr[j]<arr[ j+1]) 
+			l++;
+		if (j < n-1 && arr[j]<arr[ j+2]) 
+			l++;
+
+		if ( arr [k]>=arr[l])
+		 break;
+		swap(arr,k, l );
+		k = l;
+	}
   return;
 } 
 
