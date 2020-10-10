@@ -22,15 +22,15 @@ THeap * createTHeap(int capacity) {
     return h;
 }
 
-bool incrementeHeapSize(THeap *h){
+int incrementeHeapSize(THeap *h){
     int *tmp = h->data;
 
     //increment heap size by 2
-    h->data = (int*)malloc(2*capacity*sizeof(int));
+    h->data = (int*)malloc(2*h->capacity*sizeof(int));
     if (h->data == NULL){
         printf("Couldnt resize heap\n");
         h->data = tmp;
-        return false;
+        return 0;
     }
 
     //copy data
@@ -41,7 +41,7 @@ bool incrementeHeapSize(THeap *h){
 
     //free memory of previous array
     free(tmp);
-    return true;
+    return 1;
 }
 
 void swap(int *arr, int i, int j){
@@ -88,8 +88,8 @@ void topDownHeapify(int *arr, int k, int size){
         maxVal = arr[maxChild];
         //select min child
         int next_child = 1;
-        while(maxChild + next_child > size && next_child < 3 ){
-            if (maxVal > arr[left(k) + next_child]){
+        while(maxChild + next_child < size && next_child < 3 ){
+            if (maxVal < arr[left(k) + next_child]){
                 maxVal = arr[left(k) + next_child];
                 maxChild = left(k) + next_child;
             }
@@ -106,7 +106,7 @@ void topDownHeapify(int *arr, int k, int size){
 }
 
 void insert(THeap *h, int data){
-    if (h->size == h->capacity && !incrementeHeapSize(h)){
+    if (h->size == h->capacity && incrementeHeapSize(h)==0){
         printf("ERROR: full capacity\n");
         return;
     }
@@ -155,7 +155,7 @@ int verifyHeapProperty(THeap *h){
             return 0;
         }
     }
-    printf("HEAP OK\n");
+    printf("MAX HEAP OK\n");
     return 1;
 }
 
@@ -178,7 +178,7 @@ void minBottomUpHeapify(int *arr, int k){
 void minTopDownHeapify(int *arr, int k, int size){
     int minChild;
     int minVal;
-    
+
     while(3*k< size){
         if (left(k)>= size)
             return;
@@ -205,7 +205,7 @@ void minTopDownHeapify(int *arr, int k, int size){
 }
 
 void minHeapInsert(THeap *h, int data){
-    if (h->size == h->capacity && !incrementeHeapSize(h)){
+    if (h->size == h->capacity && incrementeHeapSize(h)==0){
         printf("ERROR: full capacity\n");
         return;
     }
@@ -244,7 +244,7 @@ int verifyMinHeapProperty(THeap *h){
             return 0;
         }
     }
-    printf("HEAP OK\n");
+    printf("MIN HEAP OK\n");
     return 1;
 }
 
