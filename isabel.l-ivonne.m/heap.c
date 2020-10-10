@@ -39,7 +39,7 @@ int removeMax(THeap *h){
  //si tenermos menos de 1 para 
 	if (h->n<1)
 	{ 
-		return -INT_MIN;
+		return INT_MIN;
 	}
 //por propiedades del heap el max esta en la primer entrada
 	int tmp = h->data[0];
@@ -47,6 +47,7 @@ int removeMax(THeap *h){
 		topDownHeapify(h->data,0,h->n);
 	return tmp;
 } 
+
 
 int getMax(THeap *h){ 
 

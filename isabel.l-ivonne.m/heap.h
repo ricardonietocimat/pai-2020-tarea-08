@@ -7,6 +7,7 @@ typedef struct _THeap{
 	int* data;
 }THeap;
 
+
 THeap * THeap_new(int c);
 void    free_THeap(THeap ** hptr);
 

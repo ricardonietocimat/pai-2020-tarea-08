@@ -33,10 +33,9 @@ void test2()
   int c = 100;
   int *arr = (int*)malloc(n*sizeof(int));
   for (unsigned int i=0; i<n; i++)
-   {
+    {
 	   arr[i] = abs(rand()%50);
 	   printf("%d ",arr[i]);
-	   
     }
     printf("\n");
   THeap *h = THeap_new(c);
