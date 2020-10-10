@@ -1,8 +1,22 @@
 = Tarea 08
 :toc:
+:stem: latexmath
 
 == Implementación 
 
+El montículo *negritas* , _italica_.
+
+[source,c]
+----
+int main(void){ 
+  
+}
+----
+
+[stem]
+++++
+
+++++
 === Pregunta 01
 
 === Pregunta 02
