@@ -4,7 +4,7 @@
 //test insert
 void test1()
 {
-	int n=7;
+  int n=7;
   int c = 100;
   int *arr = (int*)malloc(n*sizeof(int));
   for (unsigned int i=0; i<n; i++)
