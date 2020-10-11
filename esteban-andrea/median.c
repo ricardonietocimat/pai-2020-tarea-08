@@ -3,25 +3,25 @@
 
 // Prototipo ==================================================================
 
-int theap_median(THeap * thmin, THeap * thmax, int data);
+double theap_median(THeap * thmin, THeap * thmax, int data);
 
 
 // Definiciones ===============================================================
 
 double theap_median(THeap * thmin, THeap * thmax, int data){
-    /*Recibe dos montículos cuya diferencia de tamaños es a lo más 1.
+    /*Recibe dos montï¿½culos cuya diferencia de tamaï¿½os es a lo mï¿½s 1.
     Regresa el valor de la mediana*/
 
     int min_sze = thmin->size;
     int max_sze = thmax->size;
     if(abs(min_sze-max_sze)>1){
-        printf("El tamaño de los monticulos difiere por mas de uno\n");
+        printf("El tamaï¿½o de los monticulos difiere por mas de uno\n");
         return -1.0;
     }
     double med = 0; //Valor actual del mediano
     if(max_sze>min_sze){
-        med = (double)getMax(thmax);
-        if(data<med){
+        med = (double) getMax(thmax);
+        if(data < med){
             removeMax(thmax, by_max);
             insert(thmin, med, by_min);
             insert(thmax, data, by_max);

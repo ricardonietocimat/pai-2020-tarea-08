@@ -24,7 +24,7 @@ void    topDownHeapify(int * arr, int k, int n, int (*comp )( int , int ));
 // Definiciones ===============================================================
 
  THeap * THeap_new(int capacity){  // costo O(1)
-    THeap* h_ptr = (THeap*)malloc(sizeof(THeap));
+    THeap* h_ptr = (THeap*) malloc (sizeof(THeap));
     if(h_ptr == NULL){
         printf("No se concedio memoria para el monticulo\n");
         return NULL;

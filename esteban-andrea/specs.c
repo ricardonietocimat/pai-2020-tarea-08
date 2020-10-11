@@ -22,19 +22,19 @@ int test_insert_element(void){
   THeap *th; th = THeap_new(capacity);
 
   // add 0
-  printf("***** Insert 0 *****\n"); insert(th, 0);
+  printf("***** Insert 0 *****\n"); insert(th, 0, by_max);
   if(getMax(th) != 0){puts("ERROR"); return 0;}
   showHead(th);
   // add 1
-  printf("***** Insert 1 *****\n"); insert(th, 1);
+  printf("***** Insert 1 *****\n"); insert(th, 1, by_max);
   if(getMax(th) != 1){puts("ERROR"); return 0;}
   showHead(th);
   // add 5
-  printf("***** Insert 5 *****\n"); insert(th, 5);
+  printf("***** Insert 5 *****\n"); insert(th, 5, by_max);
   if(getMax(th) != 5){puts("ERROR"); return 0;}
   showHead(th);
   // add 3
-  printf("***** Insert 3 *****\n"); insert(th, 3);
+  printf("***** Insert 3 *****\n"); insert(th, 3, by_max);
   if(getMax(th) != 5){puts("ERROR"); return 0;}
   showHead(th);
 
@@ -51,19 +51,19 @@ int test_remove_max(void){
 
   printf("Adding elements\n");
   for (int i = 0; i< 10; i++){
-    insert(th,i);
+    insert(th,i, by_max);
   }
   showHead(th);
 
-  removeMax(th);
+  removeMax(th, by_max);
   if(getMax(th) != 8){puts("ERROR"); return 0;}
   showHead(th);
 
-  removeMax(th);
+  removeMax(th, by_max);
   if(getMax(th) != 7){puts("ERROR"); return 0;}
   showHead(th);
 
-  removeMax(th);
+  removeMax(th, by_max);
   if(getMax(th) != 6){puts("ERROR"); return 0;}
   showHead(th);
 
