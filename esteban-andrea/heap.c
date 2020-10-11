@@ -5,8 +5,8 @@
 
 typedef struct _THeap{
     int capacity; //capacidad máxima del arreglo
-    int size; //numero actual de datos
-    int* data; //arreglo
+    int size;     //numero actual de datos
+    int* data;    //arreglo
 }THeap;
 
 THeap * THeap_new(int capacity);
@@ -23,7 +23,7 @@ void    topDownHeapify(int * arr, int k, int n);
 
  THeap * THeap_new(int capacity){
     THeap* h_ptr = (arrInfo*)malloc(sizeof(THeap));
-    if(h_ptr== NULL){
+    if(h_ptr == NULL){
         printf("No se concedio memoria para el monticulo\n");
         return NULL;
     }
@@ -41,10 +41,10 @@ void free_THeap(THeap ** h_ptr){
 
 void insert(THeap *h, int data){
     if(h->size==h->capacity-1){
-        printf("El monticulo esta lleno\n");
+        printf("El monticulo esta lleno.\n");
         return;
     }
-    //A�ade el nuevo elemento al final
+    //Agrega el nuevo elemento al final
     h->data[(h->size)+1] = data;
     h->size++;
     //Monticuliza el arreglo xD
@@ -52,13 +52,20 @@ void insert(THeap *h, int data){
     return;
 }
 
-int removeMax(THeap *h){
-  return -1;
-}
+  int removeMax(THeap *h){ 
+  if (h->size == 0) {
+    printf("Heap vacío.");
+    return -1;
+  }
+  int tmp = h->data[0];
+  h->data[0] = h->data[h->size--];
+  topDownHeapify(h->data, 0, h->size);
+  return tmp;
+} 
 
 int getMax(THeap *h){
-    if(h->size>0){
-        return h->data[1];
+    if(h->size > 0){
+        return h->data[0];
     }
   return -1;
 }
@@ -115,16 +122,10 @@ void topDownHeapify(int * arr, int k, int n){
   }
 }
 
-int removeMax(THeap *h){
-  return -1;
-  if (h->size == 0) {
-    printf("Heap vacío.");
-    return -1;
+void showHead(THeap *h){
+  for (int i = 0; i < h->size; i++){
+    printf("%i\n",h->data[i]);
   }
-  int tmp = h->data[0];
-  h->data[0] = h->data[h->size--];
-  topDownHeapify(h->data, 0, h->size);
-  return tmp;
 }
 
 #endif
