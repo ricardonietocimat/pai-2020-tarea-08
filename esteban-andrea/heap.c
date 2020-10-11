@@ -23,7 +23,7 @@ void    topDownHeapify(int * arr, int k, int n);
 
 // Definiciones ===============================================================
 
- THeap * THeap_new(int capacity){
+ THeap * THeap_new(int capacity){  // costo O(1)
     THeap* h_ptr = (THeap*)malloc(sizeof(THeap));
     if(h_ptr == NULL){
         printf("No se concedio memoria para el monticulo\n");
@@ -39,12 +39,16 @@ void    topDownHeapify(int * arr, int k, int n);
     return h_ptr;
 }
 
-void free_THeap(THeap** h_ptr){
+void free_THeap(THeap** h_ptr){    // costo O(1)
     free(((*h_ptr)->data));
     free(*h_ptr);
     *h_ptr = NULL;
 }
 
+
+// Peor caso : Dato es mayor que todos sus ancestros y se recorre hasta la ra\'iz 
+//             costo igual a la altura del \'arbol  O(log_3(n))
+// Mejor caso: Dato es menor a su padre o \'arbol vac\'io, costo constante O(1) 
 void insert(THeap *h, int data){
     if(h->size == h->capacity){
         printf("El monticulo esta lleno\n");
@@ -58,6 +62,9 @@ void insert(THeap *h, int data){
     return;
 }
 
+// Peor caso : Se cambia dato insertado en la ra\'iz tantas veces como la altura
+//             del \'arbol, costo : O(log_3(n))
+// Mejor caso: Solo se hace un topDownHeapify o \'arbol vacío, costo O(1) 
 int removeMax(THeap *h){
   if (h->size == 0) {
     printf("Heap vacío.");
@@ -69,6 +76,7 @@ int removeMax(THeap *h){
   return tmp;
 }
 
+// Siempre se consulta el dato cero, costo constante O(1)
 int getMax(THeap *h){
     if(h->size > 0){
         return h->data[0];
@@ -76,6 +84,7 @@ int getMax(THeap *h){
   return -1;
 }
 
+// Se accede a dos datos del array, costo constante O(1)
 void swap(int*arr, int i, int j){
     int tmp = arr[i];
     arr[i] = arr[j];
@@ -83,6 +92,7 @@ void swap(int*arr, int i, int j){
 
 }
 
+// 
 void bottomUpHeapify(int *arr, int k){
     while(k>0 && arr[(k-1)/3]<arr[k]){
         swap(arr, k, (k-1)/3);
@@ -91,6 +101,11 @@ void bottomUpHeapify(int *arr, int k){
     return;
 }
 
+// Peor caso : El dato puesto en la ra\'iz se cambia hasta el \'ultimo nivel
+//             y el swap se realiza tantas veces como altura del \'arbol
+//             costo O(log_3 (n))
+// Mejor caso: Solo ocurre un intercambio o \'arbol est\'a vac\'io
+//             costo constante O(1)
 void topDownHeapify(int * arr, int k, int n){
   while (3*k < n){
     int j = 3*k+1;                            // Busco primer hijo
@@ -108,6 +123,7 @@ void topDownHeapify(int * arr, int k, int n){
   }
 }
 
+// Se recorre el arreglo hasta el tama\~no del Heap, costo O(n)
 void showHead(THeap *h){
   printf("Heap : ");
   for (int i = 0; i < h->size; i++){
