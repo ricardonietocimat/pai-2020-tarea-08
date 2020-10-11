@@ -3,16 +3,10 @@
 
 // Prototipos =================================================================
 
-<<<<<<< HEAD
 typedef struct _THeap{
-  int size;
-=======
-
-typedef struct _THeap{
-    int capacity; //capacidad máxima del arreglo
+    int capacity; //capacidad mÃ¡xima del arreglo
     int size; //numero actual de datos
     int* data; //arreglo
->>>>>>> Andrea
 }THeap;
 
 THeap * THeap_new(void);
@@ -27,7 +21,6 @@ void    topDownHeapify(int * arr, int k, int n);
 
 // Definiciones ===============================================================
 
-<<<<<<< HEAD
 void insert(THeap *h, int data){ 
   return;
 } 
@@ -67,6 +60,5 @@ void bottomUpHeapify(int *arr, int k){
 void topDownHeapify(int * arr, int k, int n){
   return;
 }
->>>>>>> Andrea
 
 #endif
