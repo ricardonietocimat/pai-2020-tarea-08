@@ -1,5 +1,7 @@
 #ifndef HEAP_T08
 #define HEAP_T08
+#include <stdio.h>
+#include <stdlib.h>
 
 // Prototipos =================================================================
 
@@ -44,19 +46,19 @@ void free_THeap(THeap** h_ptr){
 }
 
 void insert(THeap *h, int data){
-    if(h->size==h->capacity){
+    if(h->size == h->capacity){
         printf("El monticulo esta lleno\n");
         return;
     }
-    //A�ade el nuevo elemento al final
+    //Agrega el nuevo elemento al final
     h->data[h->size] = data;
-    h->size++;
     //Monticuliza el arreglo
     bottomUpHeapify(h->data, h->size);
+    h->size++;
     return;
 }
 
-  int removeMax(THeap *h){
+int removeMax(THeap *h){
   if (h->size == 0) {
     printf("Heap vacío.");
     return -1;
@@ -81,7 +83,6 @@ void swap(int*arr, int i, int j){
 
 }
 
-
 void bottomUpHeapify(int *arr, int k){
     while(k>0 && arr[(k-1)/3]<arr[k]){
         swap(arr, k, (k-1)/3);
@@ -91,7 +92,6 @@ void bottomUpHeapify(int *arr, int k){
 }
 
 void topDownHeapify(int * arr, int k, int n){
-  return;
   while (3*k < n){
     int j = 3*k+1;                            // Busco primer hijo
     if (j < n && arr[j] < arr[j+1]) {         // Si arr[j] < arr[j+1] ...
@@ -109,9 +109,14 @@ void topDownHeapify(int * arr, int k, int n){
 }
 
 void showHead(THeap *h){
+  printf("Heap : ");
   for (int i = 0; i < h->size; i++){
-    printf("%i\n",h->data[i]);
+    printf("%i ",h->data[i]);
   }
+  printf("\n");
+  printf("Size : %i, capacity: %i\n", h->size, h->capacity);
+  printf("\n");
+
 }
 
 //Por si nos dejan usar apuntadores a funciones, para el siguiente ejercicio
