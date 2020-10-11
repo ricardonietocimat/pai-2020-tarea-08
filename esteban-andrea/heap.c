@@ -18,8 +18,8 @@ void    insert(THeap *h, int data);
 int     removeMax(THeap *h);
 int     getMax(THeap *h);
 
-void    bottomUpHeapify(int *arr, int k);
-void    topDownHeapify(int * arr, int k, int n);
+void    bottomUpHeapify(int *arr, int k, int (*comp )( int , int));
+void    topDownHeapify(int * arr, int k, int n, int (*comp )( int , int ));
 
 // Definiciones ===============================================================
 
@@ -46,9 +46,9 @@ void free_THeap(THeap** h_ptr){    // costo O(1)
 }
 
 
-// Peor caso : Dato es mayor que todos sus ancestros y se recorre hasta la ra\'iz 
+// Peor caso : Dato es mayor que todos sus ancestros y se recorre hasta la ra\'iz
 //             costo igual a la altura del \'arbol  O(log_3(n))
-// Mejor caso: Dato es menor a su padre o \'arbol vac\'io, costo constante O(1) 
+// Mejor caso: Dato es menor a su padre o \'arbol vac\'io, costo constante O(1)
 void insert(THeap *h, int data){
     if(h->size == h->capacity){
         printf("El monticulo esta lleno\n");
@@ -64,7 +64,7 @@ void insert(THeap *h, int data){
 
 // Peor caso : Se cambia dato insertado en la ra\'iz tantas veces como la altura
 //             del \'arbol, costo : O(log_3(n))
-// Mejor caso: Solo se hace un topDownHeapify o \'arbol vacío, costo O(1) 
+// Mejor caso: Solo se hace un topDownHeapify o \'arbol vacío, costo O(1)
 int removeMax(THeap *h){
   if (h->size == 0) {
     printf("Heap vacío.");
@@ -92,36 +92,61 @@ void swap(int*arr, int i, int j){
 
 }
 
-// 
-void bottomUpHeapify(int *arr, int k){
-    while(k>0 && arr[(k-1)/3]<arr[k]){
+//
+void bottomUpHeapify(int *arr, int k, int (*comp )( int , int )){
+    while(k>0 && comp(arr[k], arr[(k-1)/3])==-1){
         swap(arr, k, (k-1)/3);
         k = (k-1)/3;
     }
     return;
 }
 
+//void bottomUpHeapify(int *arr, int k, int (*comp )( int , int )){
+//    while(k>0 && arr[(k-1)/3]<arr[k]){
+//        swap(arr, k, (k-1)/3);
+//        k = (k-1)/3;
+//    }
+//    return;
+//}
+
 // Peor caso : El dato puesto en la ra\'iz se cambia hasta el \'ultimo nivel
 //             y el swap se realiza tantas veces como altura del \'arbol
 //             costo O(log_3 (n))
 // Mejor caso: Solo ocurre un intercambio o \'arbol est\'a vac\'io
 //             costo constante O(1)
-void topDownHeapify(int * arr, int k, int n){
+void topDownHeapify(int * arr, int k, int n, int (*comp )( int , int )){
   while (3*k < n){
     int j = 3*k+1;                            // Busco primer hijo
-    if (j < n && arr[j] < arr[j+1]) {         // Si arr[j] < arr[j+1] ...
+    if (j < n && comp(arr[j+1],arr[j])==-1) {         // Si arr[j] < arr[j+1] ...
       j++;
-      if (j < n && arr[j] < arr[j+1]) j++;    // Si arr[j] < arr[j+1] < arr[j+2]
+      if (j < n && comp(arr[j+1],arr[j])==-1) j++;    // Si arr[j] < arr[j+1] < arr[j+2]
     }
     else{                                     // arr[j] > arr[j+1]
-      if (j+1 < n && arr[j] < arr[j+2]) j += 2;// arr[j] > arr[j+1] y arr[j] < arr[j+2]
+      if (j+1 < n && comp(arr[j+2],arr[j])==-1) j += 2;// arr[j] > arr[j+1] y arr[j] < arr[j+2]
     }
     // Si no se cumple lo anterior, hijo maximo esta en primer hijo
-    if (arr[k]>= arr[j]) break;
+    if (comp(arr[k],arr[j])==-1 || arr[k]==arr[j]) break;
     swap(arr, k, j);
     k = j;
   }
 }
+
+//void topDownHeapify(int * arr, int k, int n){
+//  while (3*k < n){
+//    int j = 3*k+1;                            // Busco primer hijo
+//    if (j < n && arr[j] < arr[j+1]) {         // Si arr[j] < arr[j+1] ...
+//      j++;
+//      if (j < n && arr[j] < arr[j+1]) j++;    // Si arr[j] < arr[j+1] < arr[j+2]
+//    }
+//    else{                                     // arr[j] > arr[j+1]
+//      if (j+1 < n && arr[j] < arr[j+2]) j += 2;// arr[j] > arr[j+1] y arr[j] < arr[j+2]
+//    }
+//    // Si no se cumple lo anterior, hijo maximo esta en primer hijo
+//    if (arr[k]>= arr[j]) break;
+//    swap(arr, k, j);
+//    k = j;
+//  }
+//}
 
 // Se recorre el arreglo hasta el tama\~no del Heap, costo O(n)
 void showHead(THeap *h){
@@ -135,10 +160,10 @@ void showHead(THeap *h){
 
 }
 
-//Por si nos dejan usar apuntadores a funciones, para el siguiente ejercicio
+
 int by_min(int a, int b){
 
-    if(a<=b){
+    if(a<b){
         return -1;
     }
     else
@@ -147,7 +172,7 @@ int by_min(int a, int b){
 
 int by_max(int a, int b){
 
-    if(a>=b){
+    if(a>b){
         return -1;
     }
     else
