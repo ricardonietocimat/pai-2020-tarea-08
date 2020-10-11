@@ -47,7 +47,7 @@ void insert(THeap *h, int data){
     //A�ade el nuevo elemento al final
     h->data[(h->size)+1] = data;
     h->size++;
-    //Monticuliza el arreglo xD
+    //Monticuliza el arreglo
     bottomUpHeapify(h->data, h->size);
     return;
 }
@@ -97,8 +97,6 @@ void bottomUpHeapify(int *arr, int k){
     return;
 }
 
-void topDownHeapify(int * arr, int k, int n){
-  return;
-}
+
 
 #endif
