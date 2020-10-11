@@ -47,7 +47,7 @@ void insert(THeap *h, int data){
     //A�ade el nuevo elemento al final
     h->data[(h->size)+1] = data;
     h->size++;
-    //Monticuliza el arreglo
+    //Monticuliza el arreglo xD
     bottomUpHeapify(h->data, h->size);
     return;
 }
@@ -97,6 +97,34 @@ void bottomUpHeapify(int *arr, int k){
     return;
 }
 
+void topDownHeapify(int * arr, int k, int n){
+  return;
+  while (3*k < n){
+    int j = 3*k+1;                            // Busco primer hijo
+    if (j < n && arr[j] < arr[j+1]) {         // Si arr[j] < arr[j+1] ...
+      j++;
+      if (j < n && arr[j] < arr[j+1]) j++;    // Si arr[j] < arr[j+1] < arr[j+2]
+    }
+    else{                                     // arr[j] > arr[j+1]
+      if (j+1 < n && arr[j] < arr[j+2]) j += 2;// arr[j] > arr[j+1] y arr[j] < arr[j+2]
+    }
+    // Si no se cumple lo anterior, hijo maximo esta en primer hijo
+    if (arr[k]>= arr[j]) break;
+    swap(arr, k, j);
+    k = j;
+  }
+}
 
+int removeMax(THeap *h){
+  return -1;
+  if (h->size == 0) {
+    printf("Heap vacío.");
+    return -1;
+  }
+  int tmp = h->data[0];
+  h->data[0] = h->data[h->size--];
+  topDownHeapify(h->data, 0, h->size);
+  return tmp;
+}
 
 #endif
