@@ -14,8 +14,8 @@ typedef struct _THeap{
 THeap * THeap_new(int capacity);
 void    free_THeap(THeap ** hptr);
 
-void    insert(THeap *h, int data);
-int     removeMax(THeap *h);
+void    insert(THeap *h, int data, int (*comp )( int , int));
+int     removeMax(THeap *h, int (*comp )( int , int));
 int     getMax(THeap *h);
 
 void    bottomUpHeapify(int *arr, int k, int (*comp )( int , int));
@@ -49,7 +49,7 @@ void free_THeap(THeap** h_ptr){    // costo O(1)
 // Peor caso : Dato es mayor que todos sus ancestros y se recorre hasta la ra\'iz
 //             costo igual a la altura del \'arbol  O(log_3(n))
 // Mejor caso: Dato es menor a su padre o \'arbol vac\'io, costo constante O(1)
-void insert(THeap *h, int data){
+void insert(THeap *h, int data, int (*comp )( int , int)){
     if(h->size == h->capacity){
         printf("El monticulo esta lleno\n");
         return;
@@ -57,7 +57,7 @@ void insert(THeap *h, int data){
     //Agrega el nuevo elemento al final
     h->data[h->size] = data;
     //Monticuliza el arreglo
-    bottomUpHeapify(h->data, h->size);
+    bottomUpHeapify(h->data, h->size, comp);
     h->size++;
     return;
 }
@@ -65,14 +65,14 @@ void insert(THeap *h, int data){
 // Peor caso : Se cambia dato insertado en la ra\'iz tantas veces como la altura
 //             del \'arbol, costo : O(log_3(n))
 // Mejor caso: Solo se hace un topDownHeapify o \'arbol vacío, costo O(1)
-int removeMax(THeap *h){
+int removeMax(THeap *h, int (*comp )( int , int)){
   if (h->size == 0) {
     printf("Heap vacío.");
     return -1;
   }
   int tmp = h->data[0];
   h->data[0] = h->data[h->size--];
-  topDownHeapify(h->data, 0, h->size);
+  topDownHeapify(h->data, 0, h->size, comp);
   return tmp;
 }
 
