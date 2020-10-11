@@ -22,7 +22,7 @@ void    topDownHeapify(int * arr, int k, int n);
 // Definiciones ===============================================================
 
  THeap * THeap_new(int capacity){
-    THeap* h_ptr = (arrInfo*)malloc(sizeof(THeap));
+    THeap* h_ptr = (THeap*)malloc(sizeof(THeap));
     if(h_ptr == NULL){
         printf("No se concedio memoria para el monticulo\n");
         return NULL;
@@ -56,7 +56,7 @@ void insert(THeap *h, int data){
     return;
 }
 
-  int removeMax(THeap *h){ 
+  int removeMax(THeap *h){
   if (h->size == 0) {
     printf("Heap vacío.");
     return -1;
@@ -65,7 +65,7 @@ void insert(THeap *h, int data){
   h->data[0] = h->data[h->size--];
   topDownHeapify(h->data, 0, h->size);
   return tmp;
-} 
+}
 
 int getMax(THeap *h){
     if(h->size > 0){
