@@ -1,4 +1,4 @@
-#include "./heap.c"
+#include "./heap.h"
 #include "median.h"
 #include <assert.h>
 #include <stdlib.h>
@@ -9,27 +9,7 @@ int getRandom(int base, int limit) {
     return base + rand() % (limit - base + 1);
 }
 
-int test_insert_element(void){
-    printf("Al probar un elemento se debe mantener la propiedad del heap: ");
-    // Create heap
-    // add 0
-    // if(getMax(th) != 0){puts("ERROR"); return 0;}
 
-    // add 1
-    // if(getMax(th) != 1){puts("ERROR"); return 0;}
-
-    // add 5
-    // if(getMax(th) != 5){puts("ERROR"); return 0;}
-
-    // add 3
-    // if(getMax(th) != 5){puts("ERROR"); return 0;}
-
-    int resultado = 1;
-    //if(resultado != 0){puts ("ERROR"); return 0;}
-
-    puts("OK");
-    return 1;
-}
 
 int testMinHeap() {
     srand(time(0));
@@ -86,22 +66,38 @@ int testMaxHeap() {
 
 
 int medianTest(){
-	int stream[]={1,5,6,2,3,8,9,10,4,7,11,15,20,12,19,16,13,18,14,17};
-	THeap *THmax, *THmin;
-	double median=0;
-	THmax = createTHeap(11);
-	THmin = createTHeap(11);
-	printf("Simple test of median implementation\n");
-	for(int i=0; i<20; i++){
-		printf("new data: %d\n",stream[i]);
-		theap_median(THmin,THmax,stream[i],&median);
-		printf("\t upper half: ");
-		printHeap(THmin);
-		printf("\t down half: ");
-		printHeap(THmax);
-		printf("****actual median: %lf ****\n",median);
-	}
-	return 0;
+    THeap *thmax = createTHeap(100);
+    THeap *thmin = createTHeap(100);
+    double median = 0;
+    median = theap_median(thmin, thmax, 1);
+    printf("%lf\n", median);
+    if (median!= 1) return 0;
+    median = theap_median(thmin, thmax, 4);
+    printf("%lf\n", median);
+    if (median!= 2.5) return 0;
+    median = theap_median(thmin, thmax, 6);
+    printf("%lf\n", median);
+    if (median!= 4) return 0;
+    median = theap_median(thmin, thmax, 2);
+    printf("%lf\n", median);
+    if (median!= 3) return 0;
+    median = theap_median(thmin, thmax, 8); //4
+    printf("%lf\n", median);
+    if (median!= 4) return 0;
+    median = theap_median(thmin, thmax, 15); //5
+    printf("%lf\n", median);
+    if (median!= 5) return 0;
+    median = theap_median(thmin, thmax, 20); //6
+    printf("%lf\n", median);
+    if (median!= 6) return 0;
+    median = theap_median(thmin, thmax, 3); //5
+    printf("%lf\n", median);
+    if (median!= 5) return 0;
+    median = theap_median(thmin, thmax, 5); //5
+    printf("%lf\n", median);
+    if (median!= 5) return 0;
+    
+    return 1;
 }
 
 int main(int num_args, char ** args){
@@ -109,7 +105,7 @@ int main(int num_args, char ** args){
     int all_tests_ok = 1;
     all_tests_ok &= testMinHeap();
     all_tests_ok &= testMaxHeap();
-    all_tests_ok &= test_insert_element();
+    all_tests_ok &= medianTest();
     assert(all_tests_ok);
     return 0;
 }

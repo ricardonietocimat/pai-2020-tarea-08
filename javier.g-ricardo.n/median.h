@@ -3,6 +3,6 @@
 
 // Prototipo ==================================================================
 
-void theap_median(THeap * thmin, THeap * thmax, int data, double *median);
+double theap_median(THeap * thmin, THeap * thmax, int data);
 
 #endif 
