@@ -30,24 +30,28 @@ void    topDownHeapify(int * arr, int k, int n);
     h_ptr->capacity = capacity;
     h_ptr->size = 0;
     h_ptr->data = (int*) calloc(capacity, sizeof(int));
+    if(h_ptr->data== NULL){
+        printf("No se concedio memoria para el arreglo\n");
+        return NULL;
+    }
     return h_ptr;
 }
 
-void free_THeap(THeap ** h_ptr){
+void free_THeap(THeap** h_ptr){
     free(((*h_ptr)->data));
     free(*h_ptr);
     *h_ptr = NULL;
 }
 
 void insert(THeap *h, int data){
-    if(h->size==h->capacity-1){
-        printf("El monticulo esta lleno.\n");
+    if(h->size==h->capacity){
+        printf("El monticulo esta lleno\n");
         return;
     }
-    //Agrega el nuevo elemento al final
-    h->data[(h->size)+1] = data;
+    //A�ade el nuevo elemento al final
+    h->data[h->size] = data;
     h->size++;
-    //Monticuliza el arreglo xD
+    //Monticuliza el arreglo
     bottomUpHeapify(h->data, h->size);
     return;
 }
@@ -70,36 +74,18 @@ int getMax(THeap *h){
   return -1;
 }
 
-void swap_andi(int*arr, int i, int j){
+void swap(int*arr, int i, int j){
     int tmp = arr[i];
     arr[i] = arr[j];
     arr[j] = tmp;
 
 }
 
-//Por si nos dejan usar apuntadores a funciones, para el siguiente ejercicio
-int by_min(int a, int b){
-
-    if(a<=b){
-        return -1;
-    }
-    else
-        return 1;
-}
-
-int by_max(int a, int b){
-
-    if(a>=b){
-        return -1;
-    }
-    else
-        return 1;
-}
 
 void bottomUpHeapify(int *arr, int k){
-    while(k>1 && arr[(k+1)/3]<arr[k]){
-        swap_andi(arr, k, k+1)/3);
-        k = (k+1)/3;
+    while(k>0 && arr[(k-1)/3]<arr[k]){
+        swap(arr, k, (k-1)/3);
+        k = (k-1)/3;
     }
     return;
 }
@@ -126,6 +112,25 @@ void showHead(THeap *h){
   for (int i = 0; i < h->size; i++){
     printf("%i\n",h->data[i]);
   }
+}
+
+//Por si nos dejan usar apuntadores a funciones, para el siguiente ejercicio
+int by_min(int a, int b){
+
+    if(a<=b){
+        return -1;
+    }
+    else
+        return 1;
+}
+
+int by_max(int a, int b){
+
+    if(a>=b){
+        return -1;
+    }
+    else
+        return 1;
 }
 
 #endif
