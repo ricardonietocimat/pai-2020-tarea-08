@@ -3,9 +3,8 @@
 
 // Prototipos =================================================================
 
-
 typedef struct _THeap{
-    int capacity; //tamaño del arreglo
+    int capacity; //capacidad mÃ¡xima del arreglo
     int size; //numero actual de datos
     int* data; //arreglo
 }THeap;
@@ -21,7 +20,6 @@ void    bottomUpHeapify(int *arr, int k);
 void    topDownHeapify(int * arr, int k, int n);
 
 // Definiciones ===============================================================
-
 
  THeap * THeap_new(int capacity){
     THeap* h_ptr = (arrInfo*)malloc(sizeof(THeap));
@@ -46,7 +44,7 @@ void insert(THeap *h, int data){
         printf("El monticulo esta lleno\n");
         return;
     }
-    //Añade el nuevo elemento al final
+    //Aï¿½ade el nuevo elemento al final
     h->data[(h->size)+1] = data;
     h->size++;
     //Monticuliza el arreglo xD
@@ -90,7 +88,6 @@ int by_max(int a, int b){
     else
         return 1;
 }
-
 
 void bottomUpHeapify(int *arr, int k){
     while(k>1 && arr[(k+1)/3]<arr[k]){
