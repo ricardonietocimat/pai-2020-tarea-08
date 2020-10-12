@@ -1,5 +1,6 @@
 #ifndef MEDIAN_T8
 #define MEDIAN_T8
+#include "./heap.c"
 
 // Prototipo ==================================================================
 
