@@ -96,16 +96,19 @@ int medianTest(){
     median = theap_median(thmin, thmax, 5); //5
     printf("%lf\n", median);
     if (median!= 5) return 0;
-    
+
+    free(thmax);
+    free(thmin);
     return 1;
 }
 
 int main(int num_args, char ** args){
-    printf("INIT TESTS\n");
+    printf("***************************************************** INIT TESTS ******************************************************\n");
     int all_tests_ok = 1;
     all_tests_ok &= testMinHeap();
     all_tests_ok &= testMaxHeap();
     all_tests_ok &= medianTest();
     assert(all_tests_ok);
+    printf("***************************************************** END TESTS ******************************************************\n\n\n");
     return 0;
 }
