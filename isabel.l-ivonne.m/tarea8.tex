@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper} 
+\usepackage[utf8]{inputenc} 
+\usepackage{mathtools}                    % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{float}
+
+\title{Programación y Algoritmos I \\Tarea 7}
+\author{Isabel López Huerta\\Ivonne Monter Aldana}
+%\date{}                                           % Activate to display a given date or no date
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+\item Implementación del montículo ternario
+\begin{itemize}
+ \item Hacer un análisis de complejidad de los métodos desarrollados (puede venir este análisis como comentario en el código). Comparar en particular el desempeño contra el montículo binario.
+ 
+ \textbf{Respuesta:}
+La definición de altura del árbol ternario es la misma que en el árbol binario, es decir es la altura de la raíz. 
+Como todos los niveles están llenos, salvo tal vez el último nivel, es decir es completo. Si la altura es $h$, entonces el número de nodos satisface que:
+\begin{align*}
+&\frac{3^{h}-1}{2}+1\leq n \leq \frac{3^{h+1}-1}{2}\\
+&\Rightarrow\frac{3^{h}+1}{2}\leq n \leq \frac{3^{h+1}-1}{2}\\
+&\Rightarrow 3^{h}+1\leq 2n \leq 3^{h+1}-1\\
+&\Rightarrow 3^{h}< 2n < 3^{h+1}\\
+&\Rightarrow h< \log_3(2n) < h+1
+\end{align*} 
+Por lo tanto $h= \lfloor\log_3(2n)\rfloor$.
+
+Se hizo uso de la fórmula  $1+3+3^2+\cdots +3^k=\frac{3^{k+1}-1}{2}$.
+
+Para el método insert() como el nodo que se inserta se coloca en el último nivel, y depués se hace un reacomodo del árbol comparando el nodo nuevo con su padre y si es mayor se hace un intercambio, y luego se campara con su nuevo padre y así sucesivamente, en el peor de los casos el nuevo nodo es el máximo, por lo que para cada nivel se hizo un intercambio, como el número de niveles es igual a la altura del árbol, se hicieron $\lfloor\log_3(2n)\rfloor$. Por lo tanto el método tiene complejidad $O(\log_3(2n))=O(\log_3(n))=O(\log(n))$.
+
+
+Para el método getMax(), como el montículo tiene el elemento máximo en la raíz y como está almacenado en la posición cero, la complejidad es constante.
+ 
+
+\end{itemize}
+\item Aplicación al calculo de la mediana en streaming
+
+\end{enumerate}
+
+\end{document}  
