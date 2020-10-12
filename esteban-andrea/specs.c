@@ -7,11 +7,13 @@
 int test_insert_element(void);
 int test_remove_max    (void);
 int test_median        (void);
+int test_remove_max_by_min(void);
 
 int main(int num_args, char ** args){
   int all_tests_ok = 1;
   all_tests_ok &= test_insert_element();
   all_tests_ok &= test_remove_max();
+  all_tests_ok &= test_remove_max_by_min();
   all_tests_ok &= test_median();
   assert(all_tests_ok);
   return 0;
