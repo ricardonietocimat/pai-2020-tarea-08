@@ -178,7 +178,16 @@ int test_removeMax_emptyHeap(void){
     return 1;
 }
 int test_max_capacity(void){
-	printf("Probar que al querer inserter un elemento que excede la capacidad no lo incerta: ");
+	printf("Probar que al querer inserter un elemento que excede la capacidad no lo inserta: ");
+    int c = 10;
+	//llena el arreglo con datos aletorios
+	THeap* h = THeap_new(c);
+	for (unsigned int i=1; i<11; i++)
+	  insert(h,i);
+	if(getMax(h)!=10){puts("ERROR"); return 0;}
+	
+	puts("OK"); 
+    return 1;
 	
 }
 int main(int num_args, char ** args)
@@ -193,6 +202,8 @@ int main(int num_args, char ** args)
   all_tests_ok &= test_Remove_element();
   all_tests_ok &= test_median_tarea();
   all_tests_ok &= test_removeMax_emptyHeap();
+  all_tests_ok &= test_max_capacity();
+  
   assert(all_tests_ok); 
 
  
