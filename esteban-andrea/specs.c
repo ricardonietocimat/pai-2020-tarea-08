@@ -76,9 +76,9 @@ int test_remove_max(void){
 }
 
 int test_remove_max_by_min(void){
-  printf("*- Test Remove Max -*\n");
+  printf("*- Test Remove Min -*\n");
   // Create heap
-  int capacity = 50;
+  int capacity = 10;
   THeap *th; th = THeap_new(capacity);
 
   printf("Adding elements\n");
