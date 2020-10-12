@@ -79,7 +79,7 @@ void bottomUpHeapify(int *arr, int k, char ord){
 			k=(k+1)/3;
 		}
 	}else{
-		while (k > 0 && arr[(k+1)/3]<arr[k]) {
+		while (k > 1 && arr[(k+1)/3]<arr[k]) {
 			swap(arr ,k, (k+1)/3);
 			k=(k+1)/3;
 		}
