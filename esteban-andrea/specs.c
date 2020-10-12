@@ -6,13 +6,15 @@
 
 int test_insert_element(void);
 int test_remove_max    (void);
+int test_median        (void);
 
 int main(int num_args, char ** args){
-    int all_tests_ok = 1;
-    all_tests_ok &= test_insert_element();
-    all_tests_ok &= test_remove_max();
-    assert(all_tests_ok);
-    return 0;
+  int all_tests_ok = 1;
+  all_tests_ok &= test_insert_element();
+  all_tests_ok &= test_remove_max();
+  all_tests_ok &= test_median();
+  assert(all_tests_ok);
+  return 0;
 }
 
 int test_insert_element(void){
@@ -68,6 +70,46 @@ int test_remove_max(void){
   showHead(th);
 
   free_THeap(&th);
+
+  puts("OK");
+  return 1;
+}
+
+int test_median(void){
+  printf("*- Test Medium Element -*\n");
+  int capacity = 50;
+  THeap *thmax; thmax = THeap_new(capacity);
+  THeap *thmin; thmin = THeap_new(capacity);
+  double median = 0;
+
+  median = theap_median(thmin, thmax, 1);
+  printf("median: %lf\n", median);
+  if(median != 1){puts("ERROR"); return 0;}
+
+  median = theap_median(thmin, thmax, 4);
+  printf("median: %lf\n", median);
+  if(median != 2.5){puts("ERROR"); return 0;}
+
+  median = theap_median(thmin, thmax, 6);
+  printf("median: %lf\n", median);
+  if(median != 4){puts("ERROR"); return 0;}
+  
+  median = theap_median(thmin, thmax, 2);
+  printf("median: %lf\n", median);
+  if(median != 3){puts("ERROR"); return 0;}
+
+  median = theap_median(thmin, thmax, 8);
+  printf("median: %lf\n", median);
+  if(median != 4){puts("ERROR"); return 0;}
+
+  median = theap_median(thmin, thmax, 15);
+  showHead(thmin);
+  showHead(thmax);
+  printf("median: %lf\n", median);
+
+  if(median != 5){puts("ERROR"); return 0;}
+
+
 
   puts("OK");
   return 1;
