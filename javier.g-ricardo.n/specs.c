@@ -21,7 +21,7 @@ int test_insert_element(void){
 
   insert(th,2,0);
   if(getMax(th) != 5){puts("ERROR"); return 0;}
-  
+	
   free_THeap(&th);
   puts("OK"); 
   return 1;
