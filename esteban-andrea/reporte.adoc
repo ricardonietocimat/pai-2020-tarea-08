@@ -19,6 +19,8 @@ La idea fue utilizar un apuntador a funciones en las funciones ya implementadas 
 Demostrar que el algoritmo propuesto calcula bien el valor mediano.
 *Demostración*. Sea n el número actual de datos y {m} su mediana. Supongamos que se tiene un montículo `th_max` y `th_min` que guardan los elementos como se describe en el enunciado y supongamos que⋅⋅
 
+![\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}](https://latex.codecogs.com/svg.latex?x%3D%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb%5E2-4ac%7D%7D%7B2a%7D)
+
 $ |size(th_mx) - size(th_min)| \leq 1 $
 
 Así que podemos dividir este problema en dos casos. Sea {d'} un nuevo dato introducido
