@@ -71,7 +71,7 @@ int removeMax(THeap *h, int (*comp )( int , int)){
     return -1;
   }
   int tmp = h->data[0];
-  h->data[0] = h->data[h->size--];
+  h->data[0] = h->data[--h->size];
   topDownHeapify(h->data, 0, h->size, comp);
   return tmp;
 }
