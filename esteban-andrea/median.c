@@ -9,6 +9,15 @@ double theap_median(THeap * thmin, THeap * thmax, int data);
 
 // Definiciones ===============================================================
 
+//Peor caso: En el peor caso se hacen dos inserciones y una remoción, a su vez,
+//          por el análisis de insert y removeMax sabemos que el el peor tiempo de dichas
+//          funciones es de O(log_3(n)). Además, el resto de operaciones no varía entre muestras
+//          por más de dos comparaciones, así que lo podemos considerar constante, así en el peor caso
+//          tendremos 2O(log_3(n)).
+//Mejor caso: En el mejor caso se hace una inserción (sin remoción), a su vez,
+//          por el análisis de insert, tenemos que en el mejor caso, insert toma un tiempo O(1).
+//          Como podemos considerar que el resto de operaciones no varía,  para el mejor caso
+//          se tiene O(1).
 double theap_median(THeap * thmin, THeap * thmax, int data){
     /*Recibe dos mont�culos cuya diferencia de tama�os es a lo m�s 1.
     Regresa el valor de la mediana*/
