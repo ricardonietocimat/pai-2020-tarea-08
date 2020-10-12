@@ -2,6 +2,7 @@
 #define HEAP_T08
 
 // Prototipos =================================================================
+void swap(int *arr, int i, int j);
 
 typedef struct _THeap{
  	unsigned int capacity;
@@ -22,6 +23,12 @@ void	topDownHeapify(int * arr, int k, int n, char ord);
 // Definiciones ===============================================================
 
 
+void swap(int *arr, int i, int j) {
+	int tmp= arr[i];
+	arr[i] = arr[j];
+	arr[j] = tmp;
+}
+
 THeap * THeap_new(unsigned int cpt){
     THeap *new=NULL;
     new=(THeap *)calloc(1,sizeof(THeap));
@@ -34,6 +41,11 @@ THeap * THeap_new(unsigned int cpt){
         printf("No se pudo reservar memoria");
     }
     return new;
+}
+
+void free_THeap(THeap ** hptr){
+	free((*hptr)->data);
+	free(*hptr);
 }
 
 void insert(THeap *h, int data, char ord){
