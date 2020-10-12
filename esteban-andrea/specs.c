@@ -52,7 +52,7 @@ int test_remove_max(void){
   THeap *th; th = THeap_new(capacity);
 
   printf("Adding elements\n");
-  for (int i = 0; i< 10; i++){
+  for (int i = 0; i<10; i++){
     insert(th,i, by_max);
   }
   showHead(th);
@@ -75,6 +75,28 @@ int test_remove_max(void){
   return 1;
 }
 
+int test_remove_max_by_min(void){
+  printf("*- Test Remove Max -*\n");
+  // Create heap
+  int capacity = 50;
+  THeap *th; th = THeap_new(capacity);
+
+  printf("Adding elements\n");
+  insert(th, 6, by_min);
+  insert(th, 8, by_min);
+  insert(th, 4, by_min);
+  printf("Antes: ");
+  showHead(th);
+
+  removeMax(th, by_min);
+  printf("Despues: ");
+  showHead(th);
+
+  free_THeap(&th);
+
+  return 1;
+}
+
 int test_median(void){
   printf("*- Test Medium Element -*\n");
   int capacity = 50;
@@ -93,7 +115,7 @@ int test_median(void){
   median = theap_median(thmin, thmax, 6);
   printf("median: %lf\n", median);
   if(median != 4){puts("ERROR"); return 0;}
-  
+
   median = theap_median(thmin, thmax, 2);
   printf("median: %lf\n", median);
   if(median != 3){puts("ERROR"); return 0;}
