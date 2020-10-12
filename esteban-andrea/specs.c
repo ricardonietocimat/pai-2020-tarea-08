@@ -77,7 +77,7 @@ int test_remove_max(void){
 
 int test_median(void){
   printf("*- Test Medium Element -*\n");
-  int capacity = 50;
+  int capacity = 10;
   THeap *thmax; thmax = THeap_new(capacity);
   THeap *thmin; thmin = THeap_new(capacity);
   double median = 0;
@@ -93,7 +93,7 @@ int test_median(void){
   median = theap_median(thmin, thmax, 6);
   printf("median: %lf\n", median);
   if(median != 4){puts("ERROR"); return 0;}
-  
+
   median = theap_median(thmin, thmax, 2);
   printf("median: %lf\n", median);
   if(median != 3){puts("ERROR"); return 0;}

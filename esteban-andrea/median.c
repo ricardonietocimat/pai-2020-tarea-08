@@ -19,7 +19,11 @@ double theap_median(THeap * thmin, THeap * thmax, int data){
         printf("El tama�o de los monticulos difiere por mas de uno\n");
         return -1.0;
     }
-    double med = 0; //Valor actual del mediano
+    if(min_sze==0 && max_sze==0){
+        insert(thmin, data, by_min);
+        return data;
+    }
+    double med = 0; //Valor actual de la mediana
     if(max_sze>min_sze){
         med = (double) getMax(thmax);
         if(data < med){

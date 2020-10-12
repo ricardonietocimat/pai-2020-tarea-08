@@ -21,6 +21,9 @@ int     getMax(THeap *h);
 void    bottomUpHeapify(int *arr, int k, int (*comp )( int , int));
 void    topDownHeapify(int * arr, int k, int n, int (*comp )( int , int ));
 
+int by_max(int a, int b);
+int by_min(int a, int b);
+
 // Definiciones ===============================================================
 
  THeap * THeap_new(int capacity){  // costo O(1)
@@ -81,7 +84,8 @@ int getMax(THeap *h){
     if(h->size > 0){
         return h->data[0];
     }
-  return -1;
+    printf("El monticulo está vacio\n");
+    return -1;
 }
 
 // Se accede a dos datos del array, costo constante O(1)
@@ -159,7 +163,6 @@ void showHead(THeap *h){
   printf("\n");
 
 }
-
 
 int by_min(int a, int b){
 
