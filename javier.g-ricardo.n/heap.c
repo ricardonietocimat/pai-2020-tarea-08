@@ -4,8 +4,8 @@
 // Prototipos =================================================================
 
 typedef struct _THeap{
-  unsigned int capacity;
-	unsigned int n;
+ 	unsigned int capacity;
+	int n;
 	int *data;
 }THeap;
 
