@@ -36,17 +36,14 @@ THeap * THeap_new(unsigned int cpt){
     return new;
 }
 
-void insert(THeap *h, int data){
-  if (h->n==h->capacity-1)
+void insert(THeap *h, int data, char ord){
+	if (h->n==h->capacity-1) 
 		return;
 	h->data[++h->n]=data;
-	bottomUpHeapify(h->data,h->n);
-  return;
+	bottomUpHeapify(h->data,h->n,ord);
 }
-
-
-int removeMax(THeap *h){
-	if (h->n<1)  
+int removeMax(THeap *h, char ord){
+	if (h->n<1) 
 		return -1;
 	int tmp = h->data[1];
 	h->data[1]= h->data[h->n--];
@@ -62,14 +59,20 @@ int getMax(THeap *h){
 }
 
 
-void bottomUpHeapify(int *arr, int k){
-  while (k > 0 && arr[(k+1)/3]<arr[k]) {
-		swap(arr ,k, (k+1)/3);
-		k=(k+1)/3;
-	}
-  return;
-}
+void bottomUpHeapify(int *arr, int k, char ord){
 
+	if(ord==1){
+		while (k > 1 && arr[(k+1)/3]>arr[k]) {
+			swap(arr ,k, (k+1)/3);
+			k=(k+1)/3;
+		}
+	}else{
+		while (k > 0 && arr[(k+1)/3]<arr[k]) {
+			swap(arr ,k, (k+1)/3);
+			k=(k+1)/3;
+		}
+	}
+} 
 void topDownHeapify(int * arr, int k, int n){
   while(3*k-1 <= n){
 		int j = 3*k - 1;//primer nodo hijo
