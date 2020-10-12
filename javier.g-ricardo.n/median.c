@@ -43,6 +43,7 @@ double theap_median(THeap * thmin, THeap * thmax, int data){
                 else{
                      mactual=(double)(getMax(thmax)+getMax(thmin))/2.0;
                      if(data<mactual){
+                          insert(thmax,data,0);
                           mactual=getMax(thmax); 
                           return mactual;
                      }
