@@ -142,6 +142,31 @@ int test_Remove_element(void){
 
   puts("OK"); 
   return 1;
+}
+
+int test_median_tarea(void){ 
+  printf("Probar el regresa la mediana es: "); 
+  // Create heap 
+  int c = 100;
+  THeap *th1 = THeap_new(c);
+  THeap *th2 = THeap_new(c);
+  int *arr = (int*)malloc(4*sizeof(int));
+  arr[0]=1;
+  arr[1]=4;
+  arr[2]=6;
+  arr[3]=2;
+
+
+  if(theap_median(th1, th2, arr[0]) != 1){puts("ERROR"); return 0;}
+
+  if(theap_median(th1, th2, arr[1])  != 2.5){puts("ERROR"); return 0;}
+
+  if(theap_median(th1, th2, arr[2])  != 4){puts("ERROR"); return 0;}
+
+  if(theap_median(th1, th2, arr[3])  != 3){puts("ERROR"); return 0;}
+
+  puts("OK"); 
+  return 1;
 } 
 
 int main(int num_args, char ** args)
@@ -154,6 +179,7 @@ int main(int num_args, char ** args)
   int all_tests_ok = 1;
   all_tests_ok &= test_insert_element();
   all_tests_ok &= test_Remove_element();
+  all_tests_ok &= test_median_tarea();
   assert(all_tests_ok); 
 
  
