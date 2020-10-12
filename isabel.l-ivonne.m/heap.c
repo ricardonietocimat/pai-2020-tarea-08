@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include "heap.h"
-
+#include "median.h"
 // Definiciones ===============================================================
 THeap* THeap_new(int c){
 	// Asignación de memoria a la  struct THeap.
