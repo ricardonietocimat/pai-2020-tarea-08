@@ -12,14 +12,16 @@ typedef struct _THeap{
 THeap * THeap_new(unsigned int cpt);
 void    free_THeap(THeap ** hptr);
 
-void    insert(THeap *h, int data);
-int     removeMax(THeap *h);
+void    insert(THeap *h, int data, char ord);
+int     removeMax(THeap *h, char ord);
 int     getMax(THeap *h);
 
-void    bottomUpHeapify(int *arr, int k);
+void    bottomUpHeapify(int *arr, int k, char ord);
+
 void    topDownHeapify(int * arr, int k, int n);
 
 // Definiciones ===============================================================
+
 
 THeap * THeap_new(unsigned int cpt){
     THeap *new=NULL;
@@ -43,20 +45,23 @@ void insert(THeap *h, int data){
   return;
 }
 
+
 int removeMax(THeap *h){
-  if (h->n<1)
+	if (h->n<1)  
 		return -1;
 	int tmp = h->data[1];
 	h->data[1]= h->data[h->n--];
-	topDownHeapify(h->data,1,h->n);
+	topDownHeapify(h->data,1,h->n,ord);
 	return tmp;
 }
 
-int getMax(THeap *h){
-  if (h->n<1)
+
+int getMax(THeap *h){ 
+  if (h->n<1) 
     return -1;
   return h->data[1];
 }
+
 
 void bottomUpHeapify(int *arr, int k){
   while (k > 0 && arr[(k+1)/3]<arr[k]) {
