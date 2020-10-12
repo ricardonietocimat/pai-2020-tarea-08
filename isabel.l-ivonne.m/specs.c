@@ -1,9 +1,9 @@
-#include "./heap.c"
-#include "./median.c"
+#include "./heap.h"
+#include "./median.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <limits.h>
 void test_insert()
 {
   //prueba del funcionamiento de insert
@@ -168,7 +168,19 @@ int test_median_tarea(void){
   puts("OK"); 
   return 1;
 } 
-
+int test_removeMax_emptyHeap(void){
+	printf("Probar que al querer remover el maximo de un monticulo vacío regrese -inf: ");
+	int c = 100;
+	THeap *h = THeap_new(c);
+	if(removeMax(h)!=INT_MIN){puts("ERROR"); return 0;}
+	 
+	puts("OK"); 
+    return 1;
+}
+int test_max_capacity(void){
+	printf("Probar que al querer inserter un elemento que excede la capacidad no lo incerta: ");
+	
+}
 int main(int num_args, char ** args)
 {
   test_insert();
@@ -180,6 +192,7 @@ int main(int num_args, char ** args)
   all_tests_ok &= test_insert_element();
   all_tests_ok &= test_Remove_element();
   all_tests_ok &= test_median_tarea();
+  all_tests_ok &= test_removeMax_emptyHeap();
   assert(all_tests_ok); 
 
  

@@ -34,6 +34,7 @@ void insert(THeap *h, int data){
   
 } 
 
+//Regresa el valor del máximo, en caso de ser vacío el heap regresa -inf
 int removeMax(THeap *h){
  //n+1 es el numero de elementos en el heap
  //si tenermos menos de n=-1 para 
