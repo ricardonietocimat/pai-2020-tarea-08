@@ -2,7 +2,7 @@
 #define HEAP_T08
 // Prototipos =================================================================
 typedef struct _THeap{
-	unsigned int capacity;
+	int capacity;
 	int n;
 	int* data;
 }THeap;
