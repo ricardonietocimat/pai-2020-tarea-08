@@ -7,23 +7,20 @@
 // la mediana. 
 //
 int main(int num_args, char ** args){ 
-    int num=0;
-    float med=0;
-    THeap * thmin=NULL,* thmax=NULL;
-    FILE *arch.*arch2;
-    arch = stdin;
-    arch2 = stdout;
-    if(arch!=NULL && arch2!=NULL){
-        while( fscanf(arch,"%d ",num)>0){
-            med=theap_median(thmin, thmax, num);
-            fprintf(arch2,"%f \n",med);
-        }
+    int num=0, cap=30;
+    double med=0;
+    THeap * thmin=NULL, *thmax=NULL;
+    
+    thmax=THeap_new(cap);
+	thmin=THeap_new(cap);
+    
+    while(scanf("%d",&num)>0){
+		med=theap_median(thmin, thmax, num);
+           
+        printf("%0.3lf\n",med);
     }
   
-  
     free_THeap(&thmin);
-    free_THeap(&thmax)
-    fclose(arch);
-    fclose(arch2);
+    free_THeap(&thmax);
   return 0;
 } 
