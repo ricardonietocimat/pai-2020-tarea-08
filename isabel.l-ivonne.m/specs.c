@@ -58,6 +58,43 @@ void test_removeMAx()
   free_THeap(&h);
 
 }
+void test_median()
+{
+//prueba de la funcion theap_median
+ int n=7;
+  int c = 100;
+  int *arr = (int*)malloc(n*sizeof(int));
+//llena el arreglo con datos aletorios
+  for (int i=0; i<n; i++)
+    {
+     arr[i] = abs(rand()%50);
+     printf("%d ",arr[i]);
+    }
+    printf("\n");
+  THeap *hmin = THeap_new(c);
+  THeap *hmax = THeap_new(c);
+  for(int i=0; i<n; i++)
+  {
+    double k=theap_median(hmin, hmax, arr[i]);
+    printf("la media es: %lf ",k);
+    printf("\nhmin es:  \n");
+    for(int j=0; j<=hmin->n; j++)
+    {
+      printf("%d ",hmin->data[j]);
+    }
+    printf("\n");
+    printf("hmax es:  ");
+    for(int j=0; j<=hmax->n; j++)
+    {
+      printf("%d ",hmax->data[j]);
+    }
+    printf("\n");
+  }
+
+  free_THeap(&hmax);
+  free_THeap(&hmin);
+
+}
 
 int test_insert_element(void){ 
   printf("Al probar un elemento se debe mantener la propiedad del heap: "); 
@@ -111,10 +148,12 @@ int main(int num_args, char ** args)
 {
   test_insert();
   test_removeMAx();
+  test_median();
+
 
   int all_tests_ok = 1;
   all_tests_ok &= test_insert_element();
-   all_tests_ok &= test_Remove_element();
+  all_tests_ok &= test_Remove_element();
   assert(all_tests_ok); 
 
  
