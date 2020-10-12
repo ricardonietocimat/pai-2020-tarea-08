@@ -1,11 +1,14 @@
-#include "./heap.c"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "./heap.c"
+
+#define TOTALTESTS 3
+int passed = 0;
 
 int test_insert_element(void){ 
 
-  printf("Al probar un elemento se debe mantener la propiedad del heap: \n"); 
+  printf("\nAl probar un elemento se debe mantener la propiedad del heap: \n"); 
 
     // Creación del montículo
     THeap *th = THeap_new();
@@ -27,11 +30,14 @@ int test_insert_element(void){
     if(getMax(th) != 11){printf("Resultado no deseado \n"); return 0;}
 
 
-    printf("Se mantiene la propiedad del heap\n"); 
+    printf("Prueba exitosa: se mantiene la propiedad del heap\n"); 
+    passed +=1;
     return 1;
 } 
 
 int test_remove_elements(void){ 
+
+    printf("\nPrueba de eliminación/inserción  de elementos\n"); 
 
     // Creación del montículo
     THeap *th = THeap_new();
@@ -49,9 +55,12 @@ int test_remove_elements(void){
     printf("Esto debe imprimir un 5 -> %d \n", getMax(th));
 
     if(getMax(th) != 5){
+        printf("Resultado no deseado: prueba fallida\n");
         return 0;
     }
 
+    printf("Prueba exitosa\n");
+    passed +=1;
     return 1;
 } 
 
@@ -72,7 +81,7 @@ int test_free_heap(){
     insert(h3, 6);
     insert(h3, 9);
 
-    printf("Tamaño heap1: %d \n", h1->size);
+    printf("\nTamaño heap1: %d \n", h1->size);
     printf("Tamaño heap2: %d \n", h2->size);
     printf("Tamaño heap3: %d \n", h3->size);
 
@@ -97,40 +106,23 @@ int test_free_heap(){
     }else{ return 0; }
 
     printf("Liberacion OK\n");
+    passed +=1;
     return 1;
 }
 
-int main(char argc, char * argv[]){
+int main(int argc, char * argv[]){
 
   int all_tests_ok = 1;
-   
-    if(argc != 2){
-        printf("Debes seleccionar un test (1-3) \n");
-        printf("1: Test de insercion:\n");
-        printf("2: Test remover elementos\n");
-        printf("3: Test liberacion de memoria:\n");
-        exit(1);
-    }
+    
+    all_tests_ok *= test_free_heap();
+    all_tests_ok *= test_remove_elements();
+    all_tests_ok *= test_insert_element();
 
-    switch(*argv[1]){
-        case '1'   :
-            all_tests_ok &= test_insert_element();
-            assert(all_tests_ok);
-            break;
-        case '2'   :
-            all_tests_ok &= test_remove_elements();
-            assert(all_tests_ok); 
-            break;
-        case '3'   :
-            all_tests_ok &= test_free_heap();
-            assert(all_tests_ok); 
-            break;
-        default:
-                printf("Se debe seleccionar un test:\n");
-                printf("1: Test de insercion:\n");
-                printf("2: Test remover elementos\n");
-                printf("3: Test liberacion de memoria:\n");
-        }
+    printf("\nTotal de pruebas realizadas: %d\n", TOTALTESTS);
+    printf("Total de pruebas exitosas: %d\n", passed) ;
+    printf("Total de pruebas fallidas: %d\n", TOTALTESTS - passed);
+
+    assert(all_tests_ok); 
 
     return 0;
 } 
