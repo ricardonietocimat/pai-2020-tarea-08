@@ -19,7 +19,7 @@ La idea fue utilizar un apuntador a funciones en las funciones ya implementadas 
 Demostrar que el algoritmo propuesto calcula bien el valor mediano.
 *Demostración*. Sea n el número actual de datos y {m} su mediana. Supongamos que se tiene un montículo `th_max` y `th_min` que guardan los elementos como se describe en el enunciado y supongamos que⋅⋅
 
-<img src="http://latex.codecogs.com/png.latex?\dpi{110}&space;|size(th_mx)&space;-&space;size(th_min)|&space;\leq&space;1" title="http://latex.codecogs.com/png.latex?\dpi{110} |size(th_mx) - size(th_min)| \leq 1" />
+<img src="https://latex.codecogs.com/gif.latex?|size(th\_mx)&space;-&space;size(th\_min)|&space;\leq&space;1" title="|size(th\_mx) - size(th\_min)| \leq 1" />
 
 Así que podemos dividir este problema en dos casos. Sea {d'} un nuevo dato introducido
 ⋅⋅* Caso 1. Si {n} es impar. Entonces la mediana será alguno de los valores de la raíz de los montículos. Será el montículo que tenga un elemento más.
