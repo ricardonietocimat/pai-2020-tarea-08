@@ -84,6 +84,28 @@ int test_insert_element(void){
   return 1;
 } 
 
+int test_Remove_element(void){ 
+  printf("Probar que al retirar el max se debe mantener la propiedad del heap: "); 
+  // Create heap 
+  int c = 100;
+  THeap *th = THeap_new(c);
+  // add 0
+  insert(th,0);
+  insert(th,1);
+  insert(th,5);
+  insert(th,3);
+
+  if(removeMax(th) != 5){puts("ERROR"); return 0;}
+
+  if(removeMax(th) != 3){puts("ERROR"); return 0;}
+
+  if(removeMax(th) != 1){puts("ERROR"); return 0;}
+
+  if(removeMax(th) != 0){puts("ERROR"); return 0;}
+
+  puts("OK"); 
+  return 1;
+} 
 
 int main(int num_args, char ** args)
 {
@@ -92,6 +114,7 @@ int main(int num_args, char ** args)
 
   int all_tests_ok = 1;
   all_tests_ok &= test_insert_element();
+   all_tests_ok &= test_Remove_element();
   assert(all_tests_ok); 
 
  
