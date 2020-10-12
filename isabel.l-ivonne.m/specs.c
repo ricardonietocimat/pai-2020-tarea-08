@@ -1,9 +1,9 @@
-#include "./heap.c"
-#include "./median.c"
+#include "./heap.h"
+#include "./median.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <limits.h>
 void test_insert()
 {
   //prueba del funcionamiento de insert
@@ -17,7 +17,7 @@ void test_insert()
      printf("%d ",arr[i]);
     }
     printf("\n");
-  THeap *h = THeap_new(c);
+    THeap *h = THeap_new(c);
    for(unsigned int i=0; i<n; i++)
   {
     insert(h,arr[i]);
@@ -27,6 +27,7 @@ void test_insert()
     printf("\n");
   }
   free_THeap(&h);
+  free(arr);
 }
 
 void test_removeMAx()
@@ -56,12 +57,13 @@ void test_removeMAx()
     printf("\n");
   }
   free_THeap(&h);
+  free(arr);
 
 }
 void test_median()
 {
 //prueba de la funcion theap_median
- int n=7;
+  int n=7;
   int c = 100;
   int *arr = (int*)malloc(n*sizeof(int));
 //llena el arreglo con datos aletorios
@@ -93,6 +95,7 @@ void test_median()
 
   free_THeap(&hmax);
   free_THeap(&hmin);
+  free(arr);
 
 }
 
@@ -118,6 +121,7 @@ int test_insert_element(void){
   if(getMax(th) != 5){puts("ERROR"); return 0;}
 
   puts("OK"); 
+  free_THeap(&th);
   return 1;
 } 
 
@@ -141,6 +145,7 @@ int test_Remove_element(void){
   if(removeMax(th) != 0){puts("ERROR"); return 0;}
 
   puts("OK"); 
+  free_THeap(&th);
   return 1;
 }
 
@@ -166,9 +171,48 @@ int test_median_tarea(void){
   if(theap_median(th1, th2, arr[3])  != 3){puts("ERROR"); return 0;}
 
   puts("OK"); 
+  free_THeap(&th1);
+  free_THeap(&th2);
+  free(arr);
   return 1;
 } 
-
+int test_removeMax_emptyHeap(void){
+	printf("Probar que al querer remover el maximo de un monticulo vacío regrese -inf: ");
+	int c = 100;
+	THeap *h = THeap_new(c);
+	if(removeMax(h)!=INT_MIN){puts("ERROR"); return 0;}
+	free_THeap(&h);
+	puts("OK"); 
+    return 1;
+}
+int test_max_capacity(void){
+	printf("Probar que al querer inserter un elemento que excede la capacidad no lo inserta: ");
+    int c = 10;
+	//llena el arreglo con datos aletorios
+	THeap* h = THeap_new(c);
+	for (unsigned int i=1; i<11; i++)
+	  insert(h,i);
+	if(getMax(h)!=10){puts("ERROR"); return 0;}
+	free_THeap(&h);
+	puts("OK"); 
+    return 1;
+	
+}
+int test_median_negativos(void){ 
+  printf("Probar que regresa la mediana correcta de numeros negativos: "); 
+  // Create heap 
+  int c = 100;
+  THeap *thmin = THeap_new(c);
+  THeap *thmax = THeap_new(c);
+	
+   for(int i=1; i<=11; i++)
+		theap_median(thmin, thmax,-i);
+  if(getMedian(thmin,thmax)  != -6){puts("ERROR"); return 0;}
+  free_THeap(&thmin);
+  free_THeap(&thmax);
+  puts("OK"); 
+  return 1;
+} 
 int main(int num_args, char ** args)
 {
   test_insert();
@@ -180,6 +224,10 @@ int main(int num_args, char ** args)
   all_tests_ok &= test_insert_element();
   all_tests_ok &= test_Remove_element();
   all_tests_ok &= test_median_tarea();
+  all_tests_ok &= test_removeMax_emptyHeap();
+  all_tests_ok &= test_max_capacity();
+  all_tests_ok &= test_median_negativos();
+  
   assert(all_tests_ok); 
 
  
