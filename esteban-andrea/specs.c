@@ -101,7 +101,7 @@ int test_remove_max_by_min(void){
 
 int test_median(void){
   printf("*- Test Medium Element -*\n");
-  int capacity = 50;
+  int capacity = 10;
   THeap *thmax; thmax = THeap_new(capacity);
   THeap *thmin; thmin = THeap_new(capacity);
   double median = 0;
