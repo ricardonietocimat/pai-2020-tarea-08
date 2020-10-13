@@ -47,7 +47,7 @@ Para el método getMax(), como el montículo tiene el elemento máximo en la ra�
  
    \begin{figure}[!h]
         \centering
-        \includegraphics[scale=0.3]{IMG-2074 (1).jpg}
+        \includegraphics[scale=0.3]{grafica_log.jpg}
         \caption{Gráfica de $log_3(2n)$ vs $log_2(n)$}
     \end{figure}
     
@@ -55,22 +55,26 @@ Para el método getMax(), como el montículo tiene el elemento máximo en la ra�
 \end{itemize}
 
 \item Aplicación al calculo de la mediana en streaming
-\begin{itemize}
+\begin{enumerate}
 \item Demostrar que el algoritmo propuesto calcula bien el valor mediano.
 \item Hacer un análisis de complejidad del algoritmo (puede venir este análisis como comentario en el
 código).
-\\
+\end{enumerate}
 \textbf{Respuesta:}
 \\
+(a) Para la implementación del montículo thmin, como este debe tener en la raíz el elemento mínimo de los datos mayores o iguales a la media, se uso la misma implementación que para un montículo con el máximo en la raíz, con la diferencia que al insertar un nuevo dato se guardo con signo negativo, esto es posible por la propiedad que para un conjunto de números $A$, el $\inf A = -\sup -A$. Para obtener el mínimo de los valores mayores o iguales que la media, se obtuvo el máximo de thmin y se multiplico por -1.
 
-Si suponemos que ya se han ingresado $n$ datos y queremos ingresar uno más tendríamos que analizar dos casos, uno donde $n$ es par y otro impar.\\
+Por construcción de los  montículos, la diferencia en los tamaños es a lo más uno, si ambos montículos tienen tamaño $n$, entonces si se ordenan todos los números, sea $m = getMax(thmax)$, como $m$ es el mayor de los n números en thmax, si los ordenamos, m estaría en la posición n, luego si $M=-getMax(thmin)$, $M$ es el menor de los $n$ números en thmin, y como los elementos de thmin son mayores que los de thmax, si los $2n$ números son ordenados de menor a mayor, $M$ estaría en la posición $n+1$, como en total son $2n$ numeros la mediana es el promedio de los dos del centro que son presisamente $m$ y $M$.
+
+Si un montículo tiene $n$ elementos y el otro tiene $n+1$, supongamos sin pérdida de generalidad que thmax tiene un elemento más, entonces si ordenamos los $2n+1$, $m = getMax(thmax)$ es el mayor de los primeros $n+1$ números, por lo tanto está en la posición del centro, lo que implica que $m$ es la mediana.
+
+(b) Si suponemos que ya se han ingresado $n$ datos y queremos ingresar uno más tendríamos que analizar dos casos, uno donde $n$ es par y otro impar.\\
 Si  $n$ es par los montículos max y min tienen la misma cantidad de elementos,tendríamos que hacer las comparaciones del dato a ingresar con la mediana (lo cual tiene un costo constante) y después solo necesitamos mandar llamar la función insert, la cual tiene un costo de $O(log_3 (2n))$, de ahí en fuera todas son constantes que se pueden ignorar. 
 \\
 Si $n$ es impar tendríamos que verificar en cuál de los montículos tiene mayor longitud, lo cual tiene un costo constante, después realiza las comparaciones del dato a insertar con la mediana, lo cual también tiene un costo constante, en el peor de los casos tendrá que remover la raíz de alguno de los montículos, asignarla a una variable temporal, insertar esta variable temporal en el otro montículo para después insertar el dato en el montículo al que le quitamos la raíz, todo esto tiene un costo de $log_3(2n)+log_3(2n)+log_3(2n)+c=3log_3(2n)+c$ donde $c$ es el número de operaciones constantes, pero por propiedades de “gran O” esto termina siendo de orden $O(log(n))$.
 \\ 
 Por lo que el método $theap\_median$ tiene una complejidad de $O=(log(n))$
 
-\end{itemize}
 \end{enumerate}
 
 \end{document}  
