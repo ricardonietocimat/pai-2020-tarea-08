@@ -9,7 +9,8 @@ double theap_median(THeap * thmin, THeap * thmax, int data);
 
 // Definiciones ===============================================================
 
-//Peor caso: En el peor caso se hacen dos inserciones y una remoción, a su vez,
+//Peor caso: En el peor caso, si n es el npumero total de nodos en los montículos
+//          se hacen dos inserciones y una remoción, a su vez,
 //          por el análisis de insert y removeMax sabemos que el el peor tiempo de dichas
 //          funciones es de O(log_3(n)). Además, el resto de operaciones no varía entre muestras
 //          por más de dos comparaciones, así que lo podemos considerar constante, así en el peor caso
