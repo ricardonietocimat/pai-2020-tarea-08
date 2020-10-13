@@ -37,15 +37,40 @@ Por lo tanto $h= \lfloor\log_3(2n)\rfloor$.
 
 Se hizo uso de la fórmula  $1+3+3^2+\cdots +3^k=\frac{3^{k+1}-1}{2}$.
 
-Para el método insert() como el nodo que se inserta se coloca en el último nivel, y depués se hace un reacomodo del árbol comparando el nodo nuevo con su padre y si es mayor se hace un intercambio, y luego se campara con su nuevo padre y así sucesivamente, en el peor de los casos el nuevo nodo es el máximo, por lo que para cada nivel se hizo un intercambio, como el número de niveles es igual a la altura del árbol, se hicieron $\lfloor\log_3(2n)\rfloor$. Por lo tanto el método tiene complejidad $O(\log_3(2n))=O(\log_3(n))=O(\log(n))$.
+Para el método insert() como el nodo que se inserta se coloca en el último nivel, depués se hace un reacomodo del árbol comparando el nodo nuevo con su padre y si es mayor se hace un intercambio, luego se campara con su nuevo padre y así sucesivamente, en el peor de los casos el nuevo nodo es el máximo, por lo que para cada nivel se hizo un intercambio, como el número de niveles es igual a la altura del árbol, se hicieron $\lfloor\log_3(2n)\rfloor$. Por lo tanto el método tiene complejidad $O(\log_3(2n))=O(\log_3(n))=O(\log(n))$.
 
-
+Para el método de removeMax() como el nodo que remueve es el nodo raíz, este se sustituye el último nodo, es necesario hacer un reajuste en el cual se  compara con sus hijos, si alguno de estos es mayor se hace un intercambio, en el peor caso al igual que en el método de insert tendrá que hacer un cambio por nivel hasta que el nodo que sustituyó a la raíz regresa al último nivel, por lo que se hicieron $\lfloor\log_3(2n)\rfloor$. Por lo tanto el método tiene complejidad $O(\log_3(2n))=O(\log_3(n))=O(\log(n))$. 
+\\
 Para el método getMax(), como el montículo tiene el elemento máximo en la raíz y como está almacenado en la posición cero, la complejidad es constante.
+ \\
+ \\En la estructura de montículo binario teniamos que las funciones removeMax e insert, ambas tenían una complejidad de $O(log_2 (n))$, que usando la propiedad de la base de los logaritmos en la notación “gran O”  la expresamos como $O(log(n))$, pero en este caso en específico, para lograr hacer una comparación de los dos algoritmos que son de origen logarítmico nos es conveniente quedarnos con las bases y las constantes multiplicativas en el caso de las funciones removeMax e insert de montículo ternario tenemos que son $O(log_3(2n))$, el crecimiento de estos dos algoritmos es muy parecido, pero a partir de un cierto n $log_3(2n)$ se queda siempre por debajo de $log_2(n)$, con lo que podemos inferir que la eficiencia del montículo ternario es mejor a la del montículo binario. 
  
+   \begin{figure}[!h]
+        \centering
+        \includegraphics[scale=0.3]{IMG-2074 (1).jpg}
+        \caption{Gráfica de $log_3(2n)$ vs $log_2(n)$}
+    \end{figure}
+    
 
 \end{itemize}
-\item Aplicación al calculo de la mediana en streaming
 
+\item Aplicación al calculo de la mediana en streaming
+\begin{itemize}
+\item Demostrar que el algoritmo propuesto calcula bien el valor mediano.
+\item Hacer un análisis de complejidad del algoritmo (puede venir este análisis como comentario en el
+código).
+\\
+\textbf{Respuesta:}
+\\
+
+Si suponemos que ya se han ingresado $n$ datos y queremos ingresar uno más tendríamos que analizar dos casos, uno donde $n$ es par y otro impar.\\
+Si  $n$ es par los montículos max y min tienen la misma cantidad de elementos,tendríamos que hacer las comparaciones del dato a ingresar con la mediana (lo cual tiene un costo constante) y después solo necesitamos mandar llamar la función insert, la cual tiene un costo de $O(log_3 (2n))$, de ahí en fuera todas son constantes que se pueden ignorar. 
+\\
+Si $n$ es impar tendríamos que verificar en cuál de los montículos tiene mayor longitud, lo cual tiene un costo constante, después realiza las comparaciones del dato a insertar con la mediana, lo cual también tiene un costo constante, en el peor de los casos tendrá que remover la raíz de alguno de los montículos, asignarla a una variable temporal, insertar esta variable temporal en el otro montículo para después insertar el dato en el montículo al que le quitamos la raíz, todo esto tiene un costo de $log_3(2n)+log_3(2n)+log_3(2n)+c=3log_3(2n)+c$ donde $c$ es el número de operaciones constantes, pero por propiedades de “gran O” esto termina siendo de orden $O(log(n))$.
+\\ 
+Por lo que el método $theap\_median$ tiene una complejidad de $O=(log(n))$
+
+\end{itemize}
 \end{enumerate}
 
 \end{document}  
