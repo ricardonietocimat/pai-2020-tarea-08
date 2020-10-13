@@ -13,7 +13,7 @@ int main(int num_args, char ** args){
   THeap *thmax = THeap_new(c);
   int data;
   while(scanf("%d",&data)>0){
-		printf("\n%f\n",theap_median(thmin,thmax,data));
+		printf("\nMediana: %f\n",theap_median(thmin,thmax,data));
 
 	 }
   free_THeap(&thmin);

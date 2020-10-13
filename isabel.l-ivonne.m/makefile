@@ -7,7 +7,7 @@ LDFLAGS=
 UBUNTUFLAGS=-lm $(LDFLAGS) -lstdc++ -std=c++11
 OPENSUSEFLAGS=-lm $(LDFLAGS)
 DEBUG=-O2
-OBJS:=test.o heap.o
+OBJS:=specs.o heap.o median.o
 MAIN=RUN
 all:$(MAIN)
 ubuntu:
