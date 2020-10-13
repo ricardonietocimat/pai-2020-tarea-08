@@ -48,18 +48,27 @@ thmin y thmax, la variable de la mediana "median" está definida
 como global.
 
 === Pregunta 04
-El montículo thmax guarda la mitad inferior de los datos obtenidos,
-Por otro lado, el montículo thmin almacena la mitad superior de los 
-datos.
+Para la implementación de este algoritmo, se requieren dos montículos diferentes: 
+un montículo thmax que almacenará la mitad inferior de los datos (menores), y thmin
+que guardará la mitadsuperior de los datos (mayores).
 
-Por la forma en la que se implementó, se puede decir que,  
-la raíz de thmax guarda el valor más grande de los pequeños 
-y la raíz de thmin guarda el valor más pequeño de los grandes.
- 
-Si alguno de los dos montículos es más grande que el otro, 
-la mediana se encontrará en la raíz del de mayor tamaño.
-Caso contrario, la mediana será el valor promedio entre las dos
-raíces.
+Por la forma de implementación, thmax funciona como una cola de prioridad tomando
+como key los valores más grandes, es decir, el dato almacenado cuyo valor numérico es 
+el más alto se encuentra sobre la raíz. Similarmente, thmin toma como key los valores 
+más pequeños, siendo el de menor valor numérico el que se encuentra sobre la raíz.
+
+Si alguno de los dos montículos es más grande que el otro, la mediana se encontrrará 
+en la raíz de mayor tamaño (pues representa el valor que se encuentra a la mitad ordénando
+los datos en orden creciente). Caso contrario, la mediana será el valor promedio entre las dos raíces.
+
+La siguiente figura muestra como se organizan los datos en cada montículo; cuando ambos montículos 
+son del mismo tamaño y se añade un nuevo nodo, este se reacomodará en su heap correspondiente
+(si es mayor a la mediana anterior en se sitúa en el thmin, si es menor en el thmax, los 
+detalles se encuentran en el documento de la tarea original), la raíz del montículo más grande 
+corresponderá a la nueva mediana.  Si después de añadir un nuevo dato, ambos heaps tienen el mismo tamaño, 
+la media corresponderá al promedio entre las dos raíces, Nótese que no importa cual sea el 
+orden de las hojas o nodos hijos, los datos de interés son los que se encuentran en la parte media.
+
 
 === Pregunta 05
 Análisis de complejidad:
