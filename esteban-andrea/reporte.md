@@ -10,11 +10,11 @@ son <img src="https://render.githubusercontent.com/render/math?math=O(n)"> y en 
 
 ## Aplicación del cálculo de la mediana en streaming
 
-### Pregunta 03
+### Pregunta 01
 La mediana en streaming se implementó en `median.c` de la carpeta `Esteban-Andrea` y las pruebas están en `specs.h`
 Para iplementarla se avanzó directamente con los casos descritos en el enunciado y se utilizaron apuntadores a las funciones de comparación `by_min` y `by_max` para reutilizar las funciones ya implementadas de `heap.c` de montículos-max, para montículos-min.
 
-### Pregunta 04
+### Pregunta 02
 Demostrar que el algoritmo propuesto calcula bien el valor mediano.  
 **Demostración**. Sea n el número actual de datos y m su mediana. Supongamos que se tiene un montículo `th_max` y `th_min` que guardan los elementos como se describe en el enunciado y supongamos que⋅⋅
 
@@ -43,5 +43,5 @@ el mínimo de `th_min`.
 
 
 
-### Pregunta 05
+### Pregunta 03
 La complejidad de la función `theap_median` se comenta en el código.
