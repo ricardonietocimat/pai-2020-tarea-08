@@ -66,7 +66,7 @@ son del mismo tamaño y se añade un nuevo nodo, este se reacomodará en su heap
 (si es mayor a la mediana anterior en se sitúa en el thmin, si es menor en el thmax, los 
 detalles se encuentran en el documento de la tarea original), la raíz del montículo más grande 
 corresponderá a la nueva mediana.  Si después de añadir un nuevo dato, ambos heaps tienen el mismo tamaño, 
-la media corresponderá al promedio entre las dos raíces, Nótese que no importa cual sea el 
+la mediana corresponderá al promedio entre las dos raíces, Nótese que no importa cual sea el 
 orden de las hojas o nodos hijos, los datos de interés son los que se encuentran en la parte media.
 
 [align=center]
