@@ -1,6 +1,9 @@
 #ifndef HEAP_T08
 #define HEAP_T08
 
+#include <stdlib.h>
+#include <stdio.h>
+
 // Prototipos =================================================================
 void swap(int *arr, int i, int j);
 
