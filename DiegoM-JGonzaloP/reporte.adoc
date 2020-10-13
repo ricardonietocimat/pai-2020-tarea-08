@@ -69,6 +69,8 @@ corresponderá a la nueva mediana.  Si después de añadir un nuevo dato, ambos 
 la media corresponderá al promedio entre las dos raíces, Nótese que no importa cual sea el 
 orden de las hojas o nodos hijos, los datos de interés son los que se encuentran en la parte media.
 
+[align=center]
+image::imgs/median.png[Median]
 
 === Pregunta 05
 Análisis de complejidad:
@@ -105,3 +107,18 @@ T(n) = 3log_{3}(n) + c
 Por lo que:
 
 T(n) = O(log(n)).
+
+== Resultados obtenidos
+
+La siguiente figura muestra la salida en la terminal utilizando como flujo de 
+entrada los datos que se encuentran en input1.txt e input2.txt respectivamente
+
+[align=center]
+image::imgs/input-output.png[IO, 640,480]
+
+
+de igual manera, se presenta la captura de los resultados de los tests propuestos 
+en specs.c
+
+[align=center]
+image::imgs/tests.png[640,480]
