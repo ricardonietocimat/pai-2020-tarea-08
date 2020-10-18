@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper} 
+\usepackage[utf8]{inputenc} 
+\usepackage{mathtools}                    % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{float}
+
+\title{Programación y Algoritmos I Tarea 9}
+\author{Isabel López Huerta\\Ivonne Monter Aldana}
+%\date{}                                           % Activate to display a given date or no date
+\begin{document}
+
+\maketitle
+
+\begin{itemize}
+ \item [\textbf{Problema 1}] [0.5 puntos]
+Demostrar que si $r$ es la raíz de un árbol rojo-negro de altura $h$, tenemos 
+\begin{align*}
+h_b(r)\geq \frac{h}{2}
+\end{align*}
+\textbf{Respuesta:}
+
+Como la altura es la longitud del camino más largo que comienza en la raíz y termina en una hoja, existe un camino $r-n_1-n_2-\cdots-n_h$ con $n_h$ una hoja, como $h_b(r)$ es el número de nodos negros de cualquier camino desde r a una hoja, en particular es igual al número de nodos negros del conjunto 
+$\{n_1,\ldots,n_2\}$ más uno por el nodo NULL. Sea $p$ y $q$ el número de nodos rojos y negros respectivamente en el conjunto $\{n_1,\ldots,n_2\}$, entonces $h_b(r)=h-p+1$, por lo tanto $h_b(r)$ es inversamente proporcional a $p$, como no puede haber nodos rojos consecutivos, el número máximo de nodos rojos que puede haber se logra con $n_1$ rojo luego $n_2$ negro, $n_3$ rojo y así sucesivamente alternando entre rojo y negro. 
+
+Si $h$ es par el número de rojos es $\frac{h}{2}$, entonces $h_b(r)=h-\frac{h}{2}+1=\frac{h}{2}+1$.
+
+Si $h$ es impar, entonces $h=2k+1$ para algún $k$ y el número de rojos es igual a $k+1$, 
+$h_b(r)=h-k-1+1=h-k=k+1=\frac{h}{2}+\frac{1}{2}$.
+
+Por lo tanto
+\begin{align*}
+h_b(r)\geq \frac{h}{2}
+\end{align*}
+
+\item [\textbf{Problema 4}] [0.5 puntos]
+
+Definimos la inserción de un nuevo dato en un árbol rojo-negro como sigue: Insertamos el nuevo nodo
+$w$ como en un ABB normal (bajando hacia su lugar, por búsqueda) y lo coloreamos como rojo. Si
+ese nodo es la raíz ($w$ fue el primer nodo), lo coloreamos como negro. Mostrar que el único caso en
+que se puede generar una violación de las reglas de árbol rojo-negro es cuando el padre de $w$ es rojo.
+
+\textbf{Respuesta:}
+
+Al insertar el nuevo nodo $w$ en color rojo, ninguna altura negra se ve afectada, ya que son el número de nodos negros,por lo que propiedad 5 se conserva. Ahora como el nuevo nodo es una hoja no tiene hijos y si el nodo padre es negro, entonces la propiedad de no tener nodos rojos consecutivos se conserva. Si el nodo padre es rojo entonces tenemos dos nodos rojos consecutivos que es una violación a la propiedad tres.
+\end{itemize}
+\end{document}  
